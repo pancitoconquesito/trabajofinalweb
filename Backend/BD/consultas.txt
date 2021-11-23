@@ -1,0 +1,3 @@
+select id_modulo from nubcursomodulo
+join curso on curso._id=nubcursomodulo.id_curso
+where curso._id=1

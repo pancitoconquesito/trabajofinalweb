@@ -1,0 +1,67 @@
+-- creamos 2 cursos
+INSERT INTO curso (img, titulo, cant_modulos, duracion, tematica, descripcion_general)
+values('https://i.imgur.com/iI8htRg.jpg',
+	   'C++', 3, 150, 'Programación', 'descripcion general de este curso');
+INSERT INTO curso (img, titulo, cant_modulos, duracion, tematica, descripcion_general)
+values('https://besthqwallpapers.com/Uploads/26-1-2018/38416/thumb2-french-mastiff-4k-puppy-pets-dogs.jpg',
+	   'Unity', 3, 200, 'Diseño', 'descripcion general de este curso');
+
+-- creamos unos 6 modulos
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+values('https://images-cdn.9gag.com/photo/a9nXmdD_700b.jpg',
+		1, 'Hola mundo', 'descripcion del hola mundo', 50,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 1);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZT_qPLC3_A1mUsiXplLbRD5g2EHOPIfTTFToeuCJQay0aJr3Uue8UKzRPmc8JHZfuJOQ&usqp=CAU',
+		2, 'Memoria dinamica', 'descripcion de memoria dinamica', 100,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 1);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXl8zqCvmSzvAMJz_JkYNx-ErobI3sOoeG_yfFFOyfyIdQUesQ7wVJhgkMUojK76F0Qk&usqp=CAU',
+		3, 'arboles binarios', 'descripcion de arboles binarios', 100,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 1);
+---
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+values('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpiFXplxk8ydBavi4pAgkgEveB85w69F5DfEKzMWJ3dXykxLPHlXfOjBrsKxEXJ5vvb5I&usqp=CAU',
+		1, 'gameobjet y componentes', 'descripcion de gameobjet y componentes', 50,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 2);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZlXHOqm7CthfSCYm44Bqk-hLkOmbB74isd3UbMmxSRhPLf4RMzPDJhdzw3poN4W4uw4I&usqp=CAU',
+		2, 'memoria, scenes y camarasa', 'descripcion de memoria, scenes y camaras', 100,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 2);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://i.imgur.com/DRqD0gI.jpg',
+		3, 'scriptable objets y arquitectur', 'descripcion de scriptable objets y arquitectur', 50,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 2);
+
+
+-- creamos 1 estudiante
+INSERT INTO estudiante (nombres, apellidos, email, contrasena, pais, ciudad, telefono, cc)
+values('juan pablo','soto perez','juan@gmail.com','123','Chile','Santiago',12345679,'11111111-k');
+
+--le agregamos un curso
+INSERT INTO nub_estudiante_curso (id_estudiante, id_curso)
+values(1,2);
+
+---------------------------------------------------
+INSERT INTO empresa (nombre_empresa, correo, contrasena, telefono, descripcion_empresa, img_empresa)
+values('coca-cola', 'rrhh@cocacola.com', '123', 123456789, 
+	  'descripcion empresa coca-cola', 
+	 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/62/621aa443ed231fe8b6a50a05e3a82b8ffcfe6b0c_full.jpg');
+INSERT INTO empresa (nombre_empresa, correo, contrasena, telefono, descripcion_empresa, img_empresa)
+values('coca-cola', 'rrhh@nintendo.com', '123', 123456789, 
+	  'descripcion empresa nintendo', 
+	 'https://i.ytimg.com/vi/9m1rM148Qsw/hqdefault.jpg');
+
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa)
+values('programador coca-cola para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Santiago','01-01-2000','Tiempo completo', 'contacto.cocacola@gmail.com',123456789, 1);
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa)
+values('analista coca-cola para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Osorno','01-01-2000','Tiempo parcial', 'contacto.cocacola@gmail.com',123456789, 1);
+
+--------------------
+
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(1,1);
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(3,2);
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(2,1);
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(4,2);
