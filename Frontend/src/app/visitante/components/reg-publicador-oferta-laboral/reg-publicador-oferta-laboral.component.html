@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <form [formGroup]="formulario"
+    (ngSubmit)="validar()"
+    novalidate
+    class="">
+
+        <div class="d-flex justify-content-center">
+            <div class="row mb-4">
+                <!-- nombres -->
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="nombreEmpresa"
+                    placeholder="Nombre Empresa">
+                    <div *ngIf="formulario.controls['nombreEmpresa'].invalid && (formulario.controls['nombreEmpresa'].touched || formulario.controls['nombreEmpresa'].dirty)" 
+                    class="alert alert-danger">
+                        <div *ngIf="formulario.controls['nombreEmpresa'].hasError('required')">Campo es obligatorio</div>
+                    </div>
+                </div>
+                <!-- apellidos -->
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="email"
+                    placeholder="Email">
+                    <div *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)" 
+                    class="alert alert-danger">
+                        <div *ngIf="formulario.controls['email'].hasError('required')">Campo es obligatorio</div>
+                        <div *ngIf="formulario.controls['email'].hasError('email')">Formato de email incorrecto</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="row mb-4">
+                <!-- contrasena -->
+                <div class="col">
+                    <input type="password" class="form-control" formControlName="contrasena"
+                    placeholder="Contraseña">
+                    <div *ngIf="formulario.controls['contrasena'].invalid && (formulario.controls['contrasena'].touched || formulario.controls['contrasena'].dirty)" 
+                    class="alert alert-danger">
+                        <div *ngIf="formulario.controls['contrasena'].hasError('required')">Campo es obligatorio</div>
+                    </div>
+                </div>
+                <!-- algoMas -->
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="mas"
+                    placeholder="Algo Más??">
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="text-center my-3">
+
+            <button [disabled]="!formulario.valid" type="submit" 
+            class="btn btn-primary rounded">Registrarse</button>
+        </div>
+
+</form>

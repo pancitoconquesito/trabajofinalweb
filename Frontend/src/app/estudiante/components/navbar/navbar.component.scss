@@ -1,0 +1,26 @@
+.navbar{
+    background-color: rgb(57, 62, 75);
+    transition: background-color 0.2s linear;
+    -webkit-transition: background-color 0.2s linear;
+    -moz-transition: background-color 0.2s linear;
+    -ms-transition: background-color 0.2s linear;
+    -o-transition: background-color 0.2s linear;
+}
+.navbar-nav a:focus{
+    background-color: rgb(74, 80, 94) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.navbar-nav a:hover{
+    background-color: rgb(132, 126, 168) !important;
+    color: black !important;
+}
+.navbar-nav  a:active{
+    background-color: rgb(74, 80, 94) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.btn-lineas{
+    background-color:white;
+}
+.btn-lineas:hover{
+    background-color: rgb(85, 125, 218);
+}

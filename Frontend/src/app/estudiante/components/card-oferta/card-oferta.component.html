@@ -1,0 +1,23 @@
+
+<!-- (click)="enter_oferta(lista_dv_cardOferta.nombreEmpresa,lista_dv_cardOferta._id_nubOfertaEmpresa)"  -->
+<div class="container-fluid alto-max" role="button" 
+[routerLink]= "['/inicioEstudiante/ofertas/',lista_dv_cardOferta.nombreEmpresa,lista_dv_cardOferta._id_nubOfertaEmpresa]" >
+    <div class="row alto-max">
+        <div class="col-8 my-3 d-flex flex-column justify-content-between alto-max">
+            <div>
+                <h4>{{lista_dv_cardOferta.titulo}}</h4>
+                <p>{{lista_dv_cardOferta.nombreEmpresa}} | {{lista_dv_cardOferta.pais}}, {{lista_dv_cardOferta.ciudad}}</p>
+            </div>
+            <div>
+                <small>Fecha : {{lista_dv_cardOferta.fechaPublicacion}}</small>
+            </div>
+        </div>
+        <div class="col-4  col-img d-flex align-items-center">
+            <img src={{lista_dv_cardOferta.imgEmpresa}} 
+            alt={{lista_dv_cardOferta.titulo}}
+            class="m-2 img-oferta  ">
+        </div>
+    </div>
+</div>
+
+

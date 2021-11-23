@@ -1,0 +1,34 @@
+.card{
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    -webkit-transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    -moz-transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    -ms-transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    -o-transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
+}
+
+.play{
+    //position: absolute;
+    //top: 10%;
+    //left: .5em;
+    font-size: 5em;
+    color: rgba(255, 251, 0, 0.6);
+    transition:color 0.25s linear;
+    -webkit-transition:color 0.25s linear;
+    -moz-transition:color 0.25s linear;
+    -ms-transition:color 0.25s linear;
+    -o-transition:color 0.25s linear;
+}
+.play:hover{
+    color: rgb(255, 255, 255);
+}
+.cosa{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: 15%;
+    // margin: 10%;
+}

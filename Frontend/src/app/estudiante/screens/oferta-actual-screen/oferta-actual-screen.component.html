@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row alturaMax">
+        <!-- parte principal -->
+        <div class="col-sm-12 col-lg-8 colorSideA">
+            <!-- parte principal -->
+            <div class="container bg-dark text-white p-3 rounded my-4">
+                <div class="row m-3">
+                    <h3 >{{dataEmpresaOferta.ofertasPublicadas[0].titulo}} </h3>
+                    <p class="my-5">{{dataEmpresaOferta.ofertasPublicadas[0].descripcion}}</p>
+                </div>
+                <div class="row m-3">
+                    <div class="col-12 col-sm-6">
+                        <small>{{dataEmpresaOferta.nombreEmpresa}} | {{dataEmpresaOferta.ofertasPublicadas[0].pais}}, {{dataEmpresaOferta.ofertasPublicadas[0].ciudad}}</small>
+                    </div>
+                    <div class="col-12 col-sm-6 text-center">
+                        <button class="rounded py-2 px-4">Postularme</button>
+                    </div>
+                </div>
+                <div class="row ms-3">
+                    <small><i class="far fa-clock me-2"></i>{{dataEmpresaOferta.ofertasPublicadas[0].fechaPublicacion}}</small>
+                </div>
+            </div>
+            <hr>
+            <!-- ofertas relacionadas??? -->
+            <div class="row">
+                <h4>Ofertas Relacionadas</h4>
+                <p>TODO</p>
+            </div>
+        </div>
+        <!-- parte secundaria -->
+        <div class="col-sn-12 col-lg-4 colorSideB" >
+            <div class="container">
+                <div class="row my-3">
+                        <img src={{dataEmpresaOferta.imgEmpresa}} alt="{{dataEmpresaOferta.nombreEmpresa}} ">
+                </div>
+                <div class="row">
+                        <small>{{dataEmpresaOferta.nombreEmpresa}} | {{dataEmpresaOferta.ofertasPublicadas[0].pais}}, {{dataEmpresaOferta.ofertasPublicadas[0].ciudad}}</small>
+                </div>
+                <div class="row">
+                    <small><i class="fas fa-phone-alt me-2 bg-dark text-white rounded-circle p-1 align-middle"></i>{{dataEmpresaOferta.ofertasPublicadas[0].telefono_contacto_laboral}}</small>
+                </div>
+                <div class="row">
+                    <small><i class="fas fa-envelope me-2 bg-dark text-white rounded-circle p-1 align-middle"></i>{{dataEmpresaOferta.ofertasPublicadas[0].correo_contacto_reclutar}}</small>
+                </div>
+                <div class="row my-3">
+                    <p>{{dataEmpresaOferta.descripcionEmpresa}}</p>
+                </div>
+                <div class="row my-4">
+                    <button class="py-3 rounded"><i class="far fa-bell me-3"></i>Recibir Notificaciones</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

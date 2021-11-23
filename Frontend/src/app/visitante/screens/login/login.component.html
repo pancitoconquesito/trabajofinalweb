@@ -1,0 +1,80 @@
+<div class="container-fluid ">
+    <div class="row bg-1 ">
+        <div class="col-md-12 col-lg-7 div-img d-flex align-items-center justify-content-center">
+            <h1 class="shandow text-white">Doggo School</h1>
+        </div>
+        <div class="col-md-12 col-lg-5">
+            <div class="container-fluid m-0 p-0 all">
+                <!-- formulario de login -->
+                <div class="row">
+                    <h3 class="text-center my-5 py-5">Inicio de Sesión</h3>
+                    <form [formGroup]="formulario"
+                    (ngSubmit)="validar()"
+                     novalidate>
+                        <!-- email -->
+                        <div class="mb-4">
+                            <input type="text" class="form-control" formControlName="email"
+                            placeholder="Email">
+                            <div *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)" 
+                            class="alert alert-danger">
+                                <div *ngIf="formulario.controls['email'].hasError('required')">Campo es obligatorio</div>
+                                <div *ngIf="formulario.controls['email'].hasError('email')">Formato de email incorrecto</div>
+                            </div>
+                        </div>
+                        <!-- password -->
+                        <div class="mb-4">
+                            <input type="password" class="form-control" formControlName="clave"
+                            placeholder="Contraseña">
+                            <div *ngIf="formulario.controls['clave'].invalid && (formulario.controls['clave'].touched || formulario.controls['clave'].dirty)" 
+                            class="alert alert-danger">
+                                <div *ngIf="formulario.controls['clave'].hasError('required')">Campo es obligatorio</div>
+                            </div>
+                        </div>
+                        <!-- boton login -->
+                        <div class="text-center">
+                            <button [disabled]="!formulario.valid" type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="row d-flex justify-content-around cont-redes my-4 py-4">
+                    <hr class="my-3">
+                    
+                    <!-- <p class="text-center my-5">Inicia sesión con</p> -->
+                    
+                    <!-- facebook -->
+                    <!-- <button class="col-5 rounded">
+                        <img src="https://acortar.link/BGWQFW" 
+                        alt="img face" class="m-2">
+                        <h4>Facebook</h4>
+                    </button> -->
+                    <!-- google -->
+                    <!-- <button class="col-5 rounded">
+                        <img src="https://acortar.link/BGWQFW" 
+                        alt="img face" class="m-2">
+                        <h4>Google</h4>
+                    </button> -->
+
+                    <p class="text-center my-4">¿Aún no tienes una cuenta?</p>
+
+                    <button class="col-5 rounded" (click)="btn_registrar()">
+                        <h4>Registrate</h4>
+                    </button>
+                    <hr class="mt-5">
+                    <p class="text-center my-3">Al registrarte en la Aplicación, aceptas nuestros Terminos y Políticas de privacidad</p>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+

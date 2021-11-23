@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row all">
+        <!-- filtrador -->
+        <div class="col-lg-4 border-lados">
+            <!-- filtrar  -->
+            <div id="busqueda-filtro" class="my-4">
+                <h3 class="my-2 mx-3">Filtrar por:</h3>
+                <div class="mx-3">
+                    <form class="d-flex justify-content-center form-inline my-2 my-lg-2">
+                        <input class="form-control my-2 my-md-1 mr-sm-1" type="search"
+                        placeholder="Buscar Ofertas Laborales" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-1" type="submit">Buscar!</button>
+                    </form>
+                </div>
+                <!-- ubicacion -->
+                <div class="my-5 mx-4">
+                    <h3 class="my-3">Ubicacion</h3>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" id="programacion">
+                        <label class="form-check-label" for="programacion">Nacional</label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" id="programacion">
+                        <label class="form-check-label" for="programacion">Internacional</label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" id="programacion">
+                        <label class="form-check-label" for="programacion">Teletrabajo</label>
+                    </div>
+                </div>
+                <!-- jornada -->
+                <div class="my-5 mx-4">
+                    <h3 class="my-3">Jornada</h3>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" id="programacion">
+                        <label class="form-check-label" for="programacion">Tiempo completo</label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" id="programacion">
+                        <label class="form-check-label" for="programacion">Tiempo parcial</label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" id="programacion">
+                        <label class="form-check-label" for="programacion">Por horas</label>
+                    </div>
+                </div>
+                <!-- salario -->
+                <div class="my-5 mx-4">
+                    <h3 class="my-3">Salario</h3>
+                    <p>???</p>
+                </div>
+            </div>
+        </div><!-- fin filtro -->
+        <div class="col-lg-8  py-4">
+            <h3 class="my-1 mx-5">Ofertas Laborales</h3>
+            <div class="container">
+                <div class="row my-5 justify-content-center ">
+
+                    <div class="col-10 rounded cardOferta my-3" 
+                    *ngFor="let cardOferta of lista_dv_cardOferta"><!-- for -->
+                        <app-card-oferta [lista_dv_cardOferta]=cardOferta></app-card-oferta>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,17 @@
+.div-img{
+    background-image: url('https://raw.githubusercontent.com/pancitoconquesito/xtra-a/main/doggo_v2.png'); 
+    background-repeat: no-repeat; 
+    text-align: center;
+    -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+min-height: 30vh;
+}
+.all{
+    min-height: 100vh;
+}
+.bg-1{
+    background: rgb(154,218,219);
+    background: linear-gradient(60deg, rgba(154,218,219,1) 0%, rgba(123,188,222,0.7847514005602241) 32%, rgba(208,199,81,0) 100%);
+}

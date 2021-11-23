@@ -1,0 +1,87 @@
+<div class="container bg-white all">
+    <div class="row">
+        <h3 class="my-4 text-center">Configuracion Perfil</h3>
+
+        <div class="col-10 offset-1">
+
+            <form [formGroup]="formulario"
+            (ngSubmit)="editar()"
+                novalidate
+                *ngIf="!formularioCompletado">
+                <!-- nombres -->
+                <label for="nombres">Nombres (entre 10 y 30 caracteres)</label>
+                <div class="mb-4">
+                    <input type="text" class="form-control" formControlName="nombres" id="nombres"
+                    placeholder="Nombres">
+                </div>
+                <div *ngIf="formulario.controls['nombres'].invalid && (formulario.controls['nombres'].touched || formulario.controls['nombres'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['nombres'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['nombres'].hasError('minlength') || formulario.controls['nombres'].hasError('maxlength')">Debe contener entre 10 30 caracteres</div>
+                </div>
+                <!-- apellidos -->
+                <label for="apellidos">Apellidos (entre 10 y 30 caracteres)</label>
+                <div class="mb-4">
+                    <input type="text" class="form-control" formControlName="apellidos" id="apellidos"
+                    placeholder="Apellidos">
+                </div>
+                <div *ngIf="formulario.controls['apellidos'].invalid && (formulario.controls['apellidos'].touched || formulario.controls['apellidos'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['apellidos'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['apellidos'].hasError('minlength') || formulario.controls['apellidos'].hasError('maxlength')">Debe contener entre 10 30 caracteres</div>
+                </div>
+                <label for="nombres">Email (entre 10 y 30 caracteres)</label>
+                <!-- email -->
+                <div class="mb-4">
+                    <input type="email" class="form-control" formControlName="email"
+                    placeholder="Email" readonly>
+                </div>
+                <!-- Contrasena -->
+                <label for="contrasena">Contraseña (entre 5 y 10 caracteres)</label>
+                <div class="mb-4">
+                    <input type="text" class="form-control" formControlName="contrasena" id="contrasena"
+                    placeholder="Contrasena" >
+                </div>
+                <div *ngIf="formulario.controls['contrasena'].invalid && (formulario.controls['contrasena'].touched || formulario.controls['contrasena'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['contrasena'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['contrasena'].hasError('minlength') || formulario.controls['contrasena'].hasError('maxlength')">Debe contener entre 5 a 10 caracteres</div>
+                </div>
+                <!-- pais, ciudad -->
+
+                <!-- telefono -->
+                <label for="telefono">Teléfono (entre 5 y 15 digitos)</label>
+                <div class="mb-4">
+                    <input type="tel" class="form-control" formControlName="telefono" id="telefono"
+                    placeholder="Teléfono" >
+                </div>
+                <div *ngIf="formulario.controls['telefono'].invalid && (formulario.controls['telefono'].touched || formulario.controls['telefono'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['telefono'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['telefono'].hasError('pattern')">Formato incorrecto, debe contener entre 5 y 15 digitos</div>
+                </div>
+                <!-- cc -->
+                <label for="cc">C.C</label>
+                <div class="mb-4">
+                    <input type="text" class="form-control" formControlName="cc" id="cc"
+                    placeholder="C.C." >
+                </div>
+                <div *ngIf="formulario.controls['cc'].invalid && (formulario.controls['cc'].touched || formulario.controls['cc'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['cc'].hasError('required')">Campo es obligatorio</div>
+                </div>
+
+                <!-- boton edit -->
+                <div class="text-center my-5">
+                    <button  [disabled]="!formulario.valid" type="submit" class="btn btn-primary">Aceptar cambios</button>
+                </div>
+            </form>
+
+
+            <div *ngIf="formularioCompletado" class="alert alert-info my-5" role="alert">
+                Datos de perfil actualizado!
+            </div>
+            
+        </div>
+    </div>
+</div>

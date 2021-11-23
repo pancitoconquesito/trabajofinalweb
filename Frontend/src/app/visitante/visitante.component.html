@@ -1,0 +1,10 @@
+<div [ngSwitch]="estado" class="all">
+    <div *ngSwitchCase="0"><app-login (register_event)="estado=$event"></app-login></div>
+    <div *ngSwitchCase="1"><app-registrarse (volver_event)="estado=$event"></app-registrarse></div>
+
+    <!-- <div *ngSwitchCase="2"><app-registrarse (volver_event)="estado=$event"></app-registrarse></div> -->
+
+    <!-- podria crear un 404, TODO -->
+    <!-- <div *ngSwitchDefault>ERROR</div> -->
+</div>
+
