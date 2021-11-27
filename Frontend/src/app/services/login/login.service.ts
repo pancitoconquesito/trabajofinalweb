@@ -40,7 +40,13 @@ export class LoginService {
 	public logearEstudiante(email:string, contrasena:string):Observable<any>{
 		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/logearestudiante/'+email+'/'+contrasena); 
 	};
-
+	public logearEmpresa(email:string, contrasena:string):Observable<any>{
+		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/logearEmpresa/'+email+'/'+contrasena); 
+	};
+	public loginAdmin(email:string, contrasena:string):Observable<any>{
+		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/loginAdmin/'+email+'/'+contrasena); 
+	};
+	
 
 
 

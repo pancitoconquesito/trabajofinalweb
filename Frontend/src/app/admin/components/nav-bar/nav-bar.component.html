@@ -1,1 +1,29 @@
-<p>nav-bar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark py-4">
+    <a class="navbar-brand text-white mx-4" 
+    routerLink="./inicio">
+        <img src="https://i.pinimg.com/originals/ad/7b/d2/ad7bd2e0ede69f2a73fd9f901787238e.jpg" 
+        width="50" height="50" 
+        class="d-inline-block align-middle rounded me-3" alt="logo">
+        Doggo School -ADMIN-
+    </a>
+    <div class="container-fluid ">
+        <button class="navbar-toggler mx-3 my-4 btn-lineas" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a routerLink="./inicio" [routerLinkActive]="'active'" class="rounded border border-white px-4 text-white mx-3 nav-link active" aria-current="page" >inicio</a>
+            <a [routerLink]="['./crear_curso']" [routerLinkActive]="'active'" class="rounded border border-white px-4 text-white mx-3 nav-link" >Crear Curso</a>
+            </div>
+        </div>
+
+        <!-- <div>
+            <button class="rounded-circle my-3 mx-3"
+            routerLink="./configuracion">
+                <i class="fas fa-user-cog p-2"></i>
+            </button>
+        </div> -->
+
+    </div>
+    
+</nav>

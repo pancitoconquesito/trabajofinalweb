@@ -1,1 +1,127 @@
-<p>crear-modulo-screen works!</p>
+<div class="container">
+    <div class="row all my-5">
+
+        <!-- //data curso -->
+        <div class="col-md-12 col-lg-4 border shadow">
+            <h3 class="text-center my-4">{{cursoActual.titulo}}</h3>
+            <div class="col">
+                <img src={{cursoActual.img}} alt={{cursoActual.titulo}} class="img-curso my-3 rounded p-4">
+            </div>
+            <div *ngIf="!load">
+                <h5>| Tematica :{{cursoActual.tematica}}</h5> 
+                <h5>| Cantidad de modulos :{{cursoActual.cant_modulos}}</h5>
+                <h5>| Duración :{{cursoActual.duracion}}</h5>
+                <p class=my-3>{{cursoActual.descripcion_general}}</p>
+                <hr class="my-5">
+    
+                <div class="col-10 offset-1 my-5 border rounded shadow text-center" *ngIf="sinModulos">
+                    <p>SIN MODULOS</p>
+                </div>
+                <div class="col-10 offset-1 my-5" *ngIf="!sinModulos">
+                    <div *ngFor="let item of listaModulos">
+                        <app-card-modulo [modulo]=item></app-card-modulo>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="load" class="text-center">
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Cargando...
+                  </button>
+            </div>
+        </div>
+
+        <!-- data formualrio modulo -->
+        <div class="col-md-12 col-lg-8 my-5 text-center">
+            <!-- formulario de login -->
+            <form [formGroup]="formulario"
+            *ngIf="!formularioCompleto"
+            (ngSubmit)="validar()"
+            novalidate>
+
+
+            <!-- img -->
+            <div class="mb-4">
+                <input type="text" class="form-control" formControlName="img"
+                placeholder="Url img (maximo 500 caracteres)">
+                <div *ngIf="formulario.controls['img'].invalid && (formulario.controls['img'].touched || formulario.controls['img'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['img'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['img'].hasError('maxlength')">Debe contener Maximo 500 caracteres</div>
+                </div>
+            </div>
+
+            <!-- titulo -->
+            <div class="mb-4">
+                <input type="text" class="form-control" formControlName="titulo"
+                placeholder="Titulo (entre 2 y 100 caracteres)">
+                <div *ngIf="formulario.controls['titulo'].invalid && (formulario.controls['titulo'].touched || formulario.controls['titulo'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['titulo'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['titulo'].hasError('minlength') || formulario.controls['titulo'].hasError('maxlength')">Debe contener entre 2 y 100 caracteres</div>
+                </div>
+            </div>
+        
+            <!-- descripcion-->
+            <div class="mb-4">
+                <div class="form-group">
+                    <label for="titulo">Descripción (entre 10 y 500 caracteres)</label>
+                    <textarea class="form-control" id="descripcion" rows="3" formControlName="descripcion"></textarea>
+                    
+                    <div *ngIf="formulario.controls['descripcion'].invalid && (formulario.controls['descripcion'].touched || formulario.controls['descripcion'].dirty)" 
+                    class="alert alert-danger">
+                        <div *ngIf="formulario.controls['descripcion'].hasError('required')">Campo es obligatorio</div>
+                        <div *ngIf="formulario.controls['descripcion'].hasError('minlength') || formulario.controls['descripcion'].hasError('maxlength')">Debe contener entre 10 y 500 caracteres</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- duracion -->
+            <div class="mb-4">
+                <input type="text" class="form-control" formControlName="duracion"
+                placeholder="Duración video (en minutos, máximo 15 dígitos)">
+                <div *ngIf="formulario.controls['duracion'].invalid && (formulario.controls['duracion'].touched || formulario.controls['duracion'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['duracion'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['duracion'].hasError('pattern')">Formato incorrecto</div>
+                </div>
+            </div>
+
+
+            <!-- urlvideo -->
+            <div class="mb-4">
+                <input type="text" class="form-control" formControlName="urlvideo"
+                placeholder="Url video (maximo 200 caracteres)">
+                <div *ngIf="formulario.controls['urlvideo'].invalid && (formulario.controls['urlvideo'].touched || formulario.controls['urlvideo'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['urlvideo'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['urlvideo'].hasError('maxlength')">Debe contener Maximo 200 caracteres</div>
+                </div>
+            </div>
+
+            <!-- boton login -->
+            <div class="text-center">
+                <button [disabled]="!formulario.valid" type="submit" class="btn btn-primary"
+                >Crear Modulo</button>
+            </div>
+        </form>
+
+        <div class="col-md-12 col-lg-8 offset-lg-2 my-5" *ngIf="formularioCompleto">
+            <div class="alert alert-success" role="alert">
+                Modulo creado exitosamente!
+            </div>
+            <div class="text-center my-5" *ngIf="!load">
+                <button (click)="otroModulo()" type="reset" class="btn btn-secondary">Agregar otro modulo</button>
+            </div>
+
+            <div class="text-center" *ngIf="load">
+                <div class="my-5 spinner-border text-info" role="status" >
+                    <span class="sr-only">Cargando...</span>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+</div>

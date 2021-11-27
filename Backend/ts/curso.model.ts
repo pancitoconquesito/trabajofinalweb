@@ -1,19 +1,21 @@
 export interface ModuloCurso{
+    _id:number,
     img:string;
-    numeroModulo:number;
+    numero_modulo:number;
     titulo:string;
     descripcion:string;
     duracion:number;
-    urlVideo:string;//string???
+    urlvideo:string;//string???
+    fk_curso:number;
 }
 export interface Curso{
-    id:number;
+    _id:number;
     img:string;
     titulo:string;
-    cantModulos:number;
+    cant_modulos:number;
     duracion:number;//en minutos, o time?
     tematica:string;
-    descripcionGeneral:string;
+    descripcion_general:string;
     modulos:Array<ModuloCurso>;
 }
 

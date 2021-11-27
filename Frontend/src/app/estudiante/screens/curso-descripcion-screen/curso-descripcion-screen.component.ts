@@ -15,7 +15,7 @@ export class CursoDescripcionScreenComponent implements OnInit {
 
   idCurso:number=-1;
   listaModulos:Array<ModuloCurso>=[];
-  cursoActual:Curso={id:0,img:'',titulo:'',cantModulos:0,duracion:0,tematica:'',descripcionGeneral:'',modulos:[]};
+  cursoActual:Curso={_id:0,img:'',titulo:'',cant_modulos:0,duracion:0,tematica:'',descripcion_general:'',modulos:[]};
   constructor(private rutaSig:Router, private route:ActivatedRoute, private servicioCurso:CursoService, private s_estudiante:EstudianteService) {
     this.route.params.subscribe(param=>{
       this.idCurso=param['idCurso'];
@@ -24,13 +24,13 @@ export class CursoDescripcionScreenComponent implements OnInit {
     this.servicioCurso.getCurso(this.idCurso).subscribe(datosCurso=>{
 
       let cursoApi:Curso={
-        id:datosCurso._id,
+        _id:datosCurso._id,
         img:datosCurso.img,
         titulo:datosCurso.titulo,
-        cantModulos:datosCurso.cant_modulos,
+        cant_modulos:datosCurso.cant_modulos,
         duracion:datosCurso.duracion,
         tematica:datosCurso.tematica,
-        descripcionGeneral:datosCurso.descripcion_general,
+        descripcion_general:datosCurso.descripcion_general,
         modulos:[]
       }
       this.cursoActual=cursoApi;
@@ -39,12 +39,14 @@ export class CursoDescripcionScreenComponent implements OnInit {
         let listaModulosApi:Array<ModuloCurso>=[];
         for(let i=0;i<datosModulo.length;i++){
           let moduloActual:ModuloCurso={
+            _id:0,
             img:datosModulo[i].img,
-            numeroModulo:datosModulo[i].numero_modulo,
+            numero_modulo:datosModulo[i].numero_modulo,
             titulo:datosModulo[i].titulo,
             descripcion:datosModulo[i].descripcion,
             duracion:datosModulo[i].duracion,
-            urlVideo:datosModulo[i].urlvideo
+            urlvideo:datosModulo[i].urlvideo,
+            fk_curso:0
           }
           listaModulosApi.push(moduloActual);
         }
@@ -71,9 +73,9 @@ export class CursoDescripcionScreenComponent implements OnInit {
       let idEstudiante=Number(pivoteIdEstudiante);
       if(idEstudiante!=undefined || idEstudiante!=null){
 
-        this.s_estudiante.addCursoXEstudiante(idEstudiante, this.cursoActual.id).subscribe(datos=>{
+        this.s_estudiante.addCursoXEstudiante(idEstudiante, this.cursoActual._id).subscribe(datos=>{
           //redirigo a ruta para ver el curso full
-          this.rutaSig.navigate(['/inicioEstudiante/cursos/'+this.cursoActual.titulo+'/'+this.cursoActual.id]);
+          this.rutaSig.navigate(['/inicioEstudiante/cursos/'+this.cursoActual.titulo+'/'+this.cursoActual._id]);
         });
       }
     }//else login

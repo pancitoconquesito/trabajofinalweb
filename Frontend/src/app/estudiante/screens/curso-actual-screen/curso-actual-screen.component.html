@@ -10,8 +10,8 @@
                         <div class="col-12 text-center my-2 "
                         *ngFor="let modulo of listaModulo"><!--FOR-->
                             <button class="p-3 rounded btn btn-outline-success btn-modulo"
-                            (click)="cambiarModulo(modulo.numeroModulo)">
-                                <h4>Módulo {{modulo.numeroModulo}}</h4>
+                            (click)="cambiarModulo(modulo.numero_modulo)">
+                                <h4>Módulo {{modulo.numero_modulo}}</h4>
                                 <p>{{modulo.titulo}}</p>
                                 <small>Duracion {{modulo.duracion |minutosParseHrMin}}</small>
                             </button>

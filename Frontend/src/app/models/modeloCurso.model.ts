@@ -1,8 +1,10 @@
 export interface ModuloCurso{
+    _id:number,
     img:string;
-    numeroModulo:number;
+    numero_modulo:number;
     titulo:string;
     descripcion:string;
     duracion:number;
-    urlVideo:string;//string???
+    urlvideo:string;//string???
+    fk_curso:number;
 }

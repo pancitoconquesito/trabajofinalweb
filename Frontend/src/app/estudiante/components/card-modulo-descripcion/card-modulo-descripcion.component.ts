@@ -8,7 +8,7 @@ import { ModuloCurso } from 'src/app/models/modeloCurso.model';
 })
 export class CardModuloDescripcionComponent implements OnInit {
 
-  @Input() modulo:ModuloCurso={img:'', numeroModulo:0, titulo:'',descripcion:'',duracion:0,urlVideo:''};
+  @Input() modulo:ModuloCurso={_id:0,img:'', numero_modulo:0, titulo:'',descripcion:'',duracion:0,urlvideo:'',fk_curso:0};
   constructor() { }
 
   ngOnInit(): void {

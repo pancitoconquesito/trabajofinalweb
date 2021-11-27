@@ -7,6 +7,10 @@ import { CrearCursoScreenComponent } from './screens/crear-curso-screen/crear-cu
 import { CrearModuloScreenComponent } from './screens/crear-modulo-screen/crear-modulo-screen.component';
 import { CursosScreenComponent } from './screens/cursos-screen/cursos-screen.component';
 import {  NavBarComponent} from './components/nav-bar/nav-bar.component';
+import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CardModuloComponent } from './components/card-modulo/card-modulo.component';
+import { CardCursoComponent } from './components/card-curso/card-curso.component';
 
 
 @NgModule({
@@ -15,11 +19,15 @@ import {  NavBarComponent} from './components/nav-bar/nav-bar.component';
     CrearCursoScreenComponent,
     CrearModuloScreenComponent,
     CursosScreenComponent,
-    NavBarComponent
+    NavBarComponent,
+    CardModuloComponent,
+    CardCursoComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

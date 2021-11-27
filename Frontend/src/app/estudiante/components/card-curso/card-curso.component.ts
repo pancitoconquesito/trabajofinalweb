@@ -15,7 +15,7 @@ export class CardCursoComponent implements OnInit {
   @Input() curso:Curso;
   constructor(private router:Router, private rutaparam:ActivatedRoute, private s_estudiante:EstudianteService){
     this.curso={
-      id:0,img:'',titulo:'',cantModulos:0,duracion:0,tematica:'',descripcionGeneral:'',modulos:[]};
+      _id:0,img:'',titulo:'',cant_modulos:0,duracion:0,tematica:'',descripcion_general:'',modulos:[]};
     let pivoteidEstudiante:string | null=this.s_estudiante.getLS_loginEstudiante();
       this.idEstudiante=Number(pivoteidEstudiante);
   }
@@ -31,12 +31,12 @@ export class CardCursoComponent implements OnInit {
     });
   }
   dirigirVistaCurso(){
-    this.s_estudiante.isCursoEnColeccion(Number(this.idEstudiante), this.curso.id).subscribe(datos=>{
-      console.log("card_"+datos.valor+"_____"+this.idEstudiante+"___"+this.curso.id);
+    this.s_estudiante.isCursoEnColeccion(Number(this.idEstudiante), this.curso._id).subscribe(datos=>{
+      console.log("card_"+datos.valor+"_____"+this.idEstudiante+"___"+this.curso._id);
       if(datos.valor==false){
-        this.router.navigate(['/inicioEstudiante/cursos/preview/'+this.curso.titulo+'/'+this.curso.id]);
+        this.router.navigate(['/inicioEstudiante/cursos/preview/'+this.curso.titulo+'/'+this.curso._id]);
       }else{
-        this.router.navigate(['/inicioEstudiante/cursos/'+this.curso.titulo+'/'+this.curso.id]);
+        this.router.navigate(['/inicioEstudiante/cursos/'+this.curso.titulo+'/'+this.curso._id]);
       }
     });
 

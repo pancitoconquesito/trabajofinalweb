@@ -1,0 +1,13 @@
+drop  table if exists data_admin cascade;
+create table data_admin(
+	_id serial not null,
+	
+	email VARCHAR(500) not null,
+	clave VARCHAR(100) not null,
+
+	constraint pk_admin primary key (_id),
+	constraint uq_email_admin unique (email)
+);
+
+INSERT INTO data_admin (email, clave)
+values('admin@gmail.com', 'admin123');

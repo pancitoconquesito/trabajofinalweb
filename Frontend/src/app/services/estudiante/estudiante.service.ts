@@ -1,6 +1,6 @@
 import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { listaCursos, listaEstudiante } from 'src/app/FAKE_BD';
+// import { listaCursos, listaEstudiante } from 'src/app/FAKE_BD';
 import { Curso } from 'src/app/models/curso.model';
 import { CursoInscrito, Estudiante } from 'src/app/models/estudiante.model';
 

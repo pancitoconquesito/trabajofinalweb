@@ -57,7 +57,11 @@ client.connect();
 // });
 app.get('/isemaildisponible/:email',(req:any, res:any)=>{
   let email=req.params.email;
-  client.query(`select distinct 'no disponible' as "res" from "estudiante", "empresa" where "estudiante"."email" = $1 or "empresa"."correo" = $1`,[email], (err:any, respuesta:any)=>{
+  client.query(`select distinct 'no disponible' as "res" 
+  from "estudiante", "empresa" , "admin"
+  where "estudiante"."email" = $1 
+  or "empresa"."correo" = $1
+  or "data_admin"."email" = $1`,[email], (err:any, respuesta:any)=>{
     if(respuesta.rows[0]==undefined) res.send({valor:true});
     else res.send({valor:false});
   });
@@ -167,22 +171,6 @@ app.get('/logearestudiante/:email/:contrasena',(req:any, res:any)=>{
   });
 });
 
-app.get('/logearestudiante/:email/:contrasena',(req:any, res:any)=>{
-  client.query(`select * from "estudiante" where "email"=$1 and "contrasena"=$2`,[req.params.email, req.params.contrasena],(err:any, respuesta:any)=>{
-    // console.log(respuesta);
-    if(respuesta.rows[0]!=undefined){
-      res.send({acceso:true, _id:respuesta.rows[0]._id});
-    }else res.send({acceso:false});
-  });
-});
-
-
-
-
-
-
-
-
 app.get('/listacursosestudiante/:_id',(req:any, res:any)=>{
   client.query(`select  "id_curso" as "id", "curso"."img", "curso"."titulo", "curso"."cant_modulos" as "cantModulos", "curso"."duracion", "curso"."tematica", "curso"."descripcion_general" as "descripcionGeneral", null as "modulos"
   from "nub_estudiante_curso"
@@ -206,44 +194,6 @@ app.delete('/eliminarcursoestudiante/:_idEstudainte/:_idcurso',(req:any, res:any
   });
 });
 
-
-
-// app.get('/getinfooferta/:_idnub',(req:any, res:any)=>{
-//   client.query(`select 
-// 	"empresa"."_id" as "_id_empresa", "empresa"."nombre_empresa", "empresa"."correo", "empresa"."contrasena", "empresa"."telefono", "empresa"."descripcion_empresa", "empresa"."img_empresa",
-// 	"oferta"."_id" as "_id_oferta", "oferta"."titulo", "oferta"."descripcion", "oferta"."pais", "oferta"."ciudad", "oferta"."fecha_publicacion", "oferta"."tipo_jornada", "oferta"."fk_empresa", "oferta"."correo_contacto_reclutar", "oferta"."telefono_contacto_laboral", "oferta"."teletrabajo", "oferta"."sueldo"
-// from "sis_listaofertas"
-// join "empresa" on "empresa"."_id" = "sis_listaofertas"."_idempresa"
-// join "oferta" on "oferta"."_id" = "sis_listaofertas"."_idoferta"
-// where "sis_listaofertas"."_idnub" = $1`,[req.params._idnub],(err:any, respuesta:any)=>{
-//     let empresa={
-//       _id: respuesta.rows[0]._id_empresa,
-//       nombreEmpresa: respuesta.rows[0].nombre_empresa,
-//       correo: respuesta.rows[0].correo,
-//       password: respuesta.rows[0].contrasena,
-//       telefono: respuesta.rows[0].telefono,
-//       descripcionEmpresa: respuesta.rows[0].descripcion_empresa,
-//       imgEmpresa:respuesta.rows[0].img_empresa,
-//       ofertasPublicadas:[
-//         {
-//           _id:respuesta.rows[0]._id_oferta,
-//           titulo: respuesta.rows[0].titulo,
-//           descripcion: respuesta.rows[0].descripcion,
-//           pais: respuesta.rows[0].pais,
-//           ciudad: respuesta.rows[0].ciudad,
-//           fechaPublicacion: respuesta.rows[0].fecha_publicacion,
-//           tipoJornada: respuesta.rows[0].tipo_jornada,
-//           fk_idEmpresa:respuesta.rows[0].fk_empresa,
-//           correo_contacto_reclutar: respuesta.rows[0].correo_contacto_reclutar,
-//           telefono_contacto_laboral: respuesta.rows[0].telefono_contacto_laboral,
-//           teletrabajo: respuesta.rows[0].teletrabajo,
-//           sueldo:respuesta.rows[0].sueldo
-//         }
-//       ]
-//     }
-//     res.send(empresa);
-//     // res.send(respuesta);
-//   });
 app.get('/getinfooferta/:_idnub',(req:any, res:any)=>{
   client.query(`select 
 	"empresa"."_id" as "_id_empresa", "empresa"."nombre_empresa", "empresa"."correo", "empresa"."contrasena", "empresa"."telefono", "empresa"."descripcion_empresa", "empresa"."img_empresa",
@@ -315,10 +265,21 @@ app.get('/getnub/:_idempresa/:_idoferta',(req:any, res:any)=>{
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.get('/logearEmpresa/:email/:contrasena',(req:any, res:any)=>{
+  client.query(`select * from "empresa" where "correo"=$1 and "contrasena"=$2`,[req.params.email, req.params.contrasena],(err:any, respuesta:any)=>{
+    // console.log(respuesta);
+    if(respuesta.rows[0]!=undefined){
+      res.send({acceso:true, _id:respuesta.rows[0]._id});
+    }else res.send({acceso:false});
+  });
+});
+
 app.get('/isEmpresaDisponible/:correo',(req:any, res:any)=>{
-  client.query(`select distinct * from "empresa" ,  "estudiante" 
-  where "empresa"."correo"=$1 or
-  "estudiante"."email"=$1`,[req.params.correo],(err:any, respuesta:any)=>{
+  client.query(`select distinct 'no disponible' as "res" 
+  from "estudiante", "empresa" , "admin"
+  where "estudiante"."email" = $1 
+  or "empresa"."correo" = $1
+  or "data_admin"."email" = $1`,[req.params.correo],(err:any, respuesta:any)=>{
     // res.send(respuesta.rows[0]);
     if(respuesta.rows[0]!=undefined){
       res.send({valor:false});
@@ -355,6 +316,57 @@ app.post('/addOfertaSis',jsonParser,(req:any, res:any)=>{
     res.send({_id:respuesta});
   });
 });
+
+
+app.get('/loginAdmin/:email/:contrasena',(req:any, res:any)=>{
+  client.query(`select * from data_admin
+  where "email"=$1 and "clave"=$2`,[req.params.email, req.params.contrasena],(err:any, respuesta:any)=>{
+    if(respuesta.rows[0]!=undefined){
+      res.send({acceso:true, _id:respuesta.rows[0]._id});
+    }else res.send({acceso:false});
+  });
+});
+
+//------------------------------------------------------------------------------------------------------
+
+app.post('/addCurso',jsonParser,(req:any, res:any)=>{
+  client.query(`insert into "curso" (img, titulo, cant_modulos, duracion, tematica, descripcion_general) 
+  values ($1, $2, $3, $4, $5, $6)
+  RETURNING *`,
+  [req.body.img, req.body.titulo, req.body.cant_modulo, req.body.duracion, req.body.tematica, req.body.descripcion_general] ,(err:any, respuesta:any)=>{
+    res.send({_id:respuesta.rows[0]._id});
+  });
+});
+
+app.post('/addModulo',jsonParser,(req:any, res:any)=>{
+  client.query(`insert into "modulo" (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+  values ($1, $2, $3, $4, $5, $6, $7)
+  RETURNING *`,
+  [req.body.img, req.body.numero_modulo, req.body.titulo, req.body.descripcion, req.body.duracion, req.body.urlvideo, req.body.fk_curso] ,(err:any, respuesta:any)=>{
+    res.send({_id:respuesta.rows[0]._id});
+  });
+});
+
+app.put('/actualizarCurso/:idCurso',jsonParser, (req:any, res:any, next:any)=>{
+  let _id=req.params.idCurso;
+  let new_cantModulosCurso=req.body.new_cantModulosCurso;
+  let new_duracionCurso=req.body.new_duracionCurso;
+  
+  client.query(`update "curso" 
+  set "cant_modulos" = $2, "duracion"=$3 where "_id" = $1 
+  RETURNING *`,
+  [_id, new_cantModulosCurso, new_duracionCurso],(err:any, respuesta:any, next:any)=>{
+    res.setHeader('X-Foo', 'bar');
+    res.setHeader('Content-Type', 'text/plain');
+    res.write('Modificacion ok');
+    // next.send({valor:'ok'});
+    // res.
+  });
+});
+
+
+    
+
 
 
 //   let variable_uno=req.body.variable_uno;

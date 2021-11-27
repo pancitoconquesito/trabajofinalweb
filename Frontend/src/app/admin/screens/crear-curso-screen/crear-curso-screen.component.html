@@ -1,1 +1,90 @@
-<p>crear-curso-screen works!</p>
+<!-- 
+
+
+cant_modulo//
+duracion//
+tematica
+descripcion_general -->
+
+
+
+<div class="container">
+    <div class="row bg-1 my-5 all">
+        <div class="col-md-12 col-lg-8 offset-lg-2" *ngIf="!formularioCompleto">
+
+            <!-- formulario de login -->
+                <form [formGroup]="formulario"
+                    (ngSubmit)="validar()"
+                    novalidate>
+
+                    <!-- img -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" formControlName="img"
+                        placeholder="Url img (maximo 500 caracteres)">
+                        <div *ngIf="formulario.controls['img'].invalid && (formulario.controls['img'].touched || formulario.controls['img'].dirty)" 
+                        class="alert alert-danger">
+                            <div *ngIf="formulario.controls['img'].hasError('required')">Campo es obligatorio</div>
+                            <div *ngIf="formulario.controls['img'].hasError('maxlength')">Debe contener Maximo 100 caracteres</div>
+                        </div>
+                    </div>
+
+                    <!-- titulo -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" formControlName="titulo"
+                        placeholder="Titulo (maximo 500 caracteres)">
+                        <div *ngIf="formulario.controls['titulo'].invalid && (formulario.controls['titulo'].touched || formulario.controls['titulo'].dirty)" 
+                        class="alert alert-danger">
+                            <div *ngIf="formulario.controls['titulo'].hasError('required')">Campo es obligatorio</div>
+                            <div *ngIf="formulario.controls['titulo'].hasError('minlength') || formulario.controls['titulo'].hasError('maxlength')">Debe contener entre 2 y 100 caracteres</div>
+                        </div>
+                    </div>
+                    
+                    <!-- tematica -->
+                    <div class="col-md-12 col-lg-6 my-3">
+                        <select class="form-select" aria-label="asdf"
+                        formControlName="tematica">
+                            <option selected value="0" >- Tematica -</option>
+                            <option value="Programación">Programación</option>
+                            <option value="Diseño">Diseño</option>
+                            <option value="Humanidades">Humanidades</option>
+                        </select>
+                    </div>
+
+                    <!-- descripcion_general -->
+                    <div class="mb-4">
+                        <div class="form-group">
+                            <label for="titulo">Descripción General (entre 10 y 500 caracteres)</label>
+                            <textarea class="form-control" id="descripcion_general" rows="3" formControlName="descripcion_general"></textarea>
+                            
+                            <div *ngIf="formulario.controls['descripcion_general'].invalid && (formulario.controls['descripcion_general'].touched || formulario.controls['descripcion_general'].dirty)" 
+                            class="alert alert-danger">
+                                <div *ngIf="formulario.controls['descripcion_general'].hasError('required')">Campo es obligatorio</div>
+                                <div *ngIf="formulario.controls['descripcion_general'].hasError('minlength') || formulario.controls['descripcion_general'].hasError('maxlength')">Debe contener entre 10 y 500 caracteres</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- boton login -->
+                    <div class="text-center">
+                        <button [disabled]="!formulario.valid" type="submit" class="btn btn-primary"
+                        >Crear Curso</button>
+                    </div>
+                </form>
+
+
+
+
+        </div>
+        <div class="col-md-12 col-lg-8 offset-lg-2 my-5" *ngIf="formularioCompleto">
+            <div class="alert alert-success" role="alert">
+                Curso creado exitosamente!
+            </div>
+            <div class="text-center my-5">
+                <button (click)="irACurso()">Ir al curso</button>
+            </div>
+        </div>
+    </div>
+</div>
+

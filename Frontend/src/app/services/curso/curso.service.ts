@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { listaCursos, listaCursosID } from 'src/app/FAKE_BD';
+import { listaCursosID } from 'src/app/FAKE_BD';
 import { Curso } from 'src/app/models/curso.model';
 import { CursosID } from 'src/app/models/cursosID.models';
 

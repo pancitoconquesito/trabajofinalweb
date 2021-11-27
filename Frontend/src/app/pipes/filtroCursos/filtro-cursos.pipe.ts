@@ -21,11 +21,11 @@ export class FiltroCursosPipe implements PipeTransform {
     let checkMod:boolean=(mod1&&mod2&&mod3&&mod4&&modMas)||(!mod1&&!mod2&&!mod3&&!mod4&&!modMas);
     if(!checkMod){
         // listaCursosRetorno.pop();
-        if(!mod1)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos != 1);
-        if(!mod2)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos != 2);
-        if(!mod3)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos != 3);
-        if(!mod4)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos != 4);
-        if(!modMas)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos < 5);
+        if(!mod1)listaCursosRetorno=listaCursosRetorno.filter( x => x.cant_modulos != 1);
+        if(!mod2)listaCursosRetorno=listaCursosRetorno.filter( x => x.cant_modulos != 2);
+        if(!mod3)listaCursosRetorno=listaCursosRetorno.filter( x => x.cant_modulos != 3);
+        if(!mod4)listaCursosRetorno=listaCursosRetorno.filter( x => x.cant_modulos != 4);
+        if(!modMas)listaCursosRetorno=listaCursosRetorno.filter( x => x.cant_modulos < 5);
     }
     
     //tema

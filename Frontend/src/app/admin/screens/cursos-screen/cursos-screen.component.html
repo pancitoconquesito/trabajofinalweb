@@ -1,1 +1,18 @@
-<p>cursos-screen works!</p>
+<div class="container">
+    <div class="all">
+        
+        <div class="row my-5">
+            <!-- <div class="col"> -->
+                <h3 class="my-5 text-center">Cursos</h3>
+                <!-- <div class="col-12 offset-1 my-5" > -->
+                    
+                <!-- </div> -->
+            <!-- </div> -->
+        </div>
+        <div class="row my-5">
+            <div *ngFor="let item of listaCursos" class="col-12 colmd-6 col-lg-4 ">
+                <app-card-curso [curso]=item></app-card-curso>
+            </div>
+        </div>
+    </div>
+</div>

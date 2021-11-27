@@ -38,16 +38,16 @@ export class CursosScreenComponent implements OnInit {
     this.s_curso.getAllCursos().subscribe(datos=>{
       for(let i =0;i<datos.length;i++){
         let cursoActual:Curso={
-          id:datos[i]._id,
+          _id:datos[i]._id,
           img:datos[i].img,
           titulo:datos[i].titulo,
-          cantModulos:datos[i].cant_modulos,
+          cant_modulos:datos[i].cant_modulos,
           duracion:datos[i].duracion,
           tematica:datos[i].tematica,
-          descripcionGeneral:datos[i],
+          descripcion_general:datos[i],
           modulos:[]
         };
-        this.s_curso.getModulos(cursoActual.id).subscribe(datos=>{cursoActual.modulos=datos});
+        this.s_curso.getModulos(cursoActual._id).subscribe(datos=>{cursoActual.modulos=datos});
         listaCursosReq.push(cursoActual);
       }
       this.lista_cursos=listaCursosReq;

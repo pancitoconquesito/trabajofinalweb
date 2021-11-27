@@ -15,8 +15,8 @@ export class CursoActualScreenComponent implements OnInit {
 
 
   id_curso:number=99;
-  cursoActual:Curso={id:0,img:'', titulo:'',cantModulos:0,duracion:0,tematica:'',descripcionGeneral:'',modulos:[]};
-  moduloActual:ModuloCurso={img:'', numeroModulo:0, titulo:'',descripcion:'',duracion:0,urlVideo:''};
+  cursoActual:Curso={_id:0,img:'', titulo:'',cant_modulos:0,duracion:0,tematica:'',descripcion_general:'',modulos:[]};
+  moduloActual:ModuloCurso={_id:0, img:'', numero_modulo:0, titulo:'',descripcion:'',duracion:0,urlvideo:'',fk_curso:0};
   listaModulo:Array<ModuloCurso>=[];
   constructor(private ruta:ActivatedRoute, private s_curso:CursoService, private s_estudiante:EstudianteService, private nuevaRuta:Router){
     this.ruta.params.subscribe(datos =>{
@@ -26,25 +26,16 @@ export class CursoActualScreenComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
-    
-    
-    
-    
-    
-
-    
-    
     this.s_curso.getCurso(this.id_curso).subscribe(datosCurso=>{
 
       let cursoApi:Curso={
-        id:datosCurso._id,
+        _id:datosCurso._id,
         img:datosCurso.img,
         titulo:datosCurso.titulo,
-        cantModulos:datosCurso.cant_modulos,
+        cant_modulos:datosCurso.cant_modulos,
         duracion:datosCurso.duracion,
         tematica:datosCurso.tematica,
-        descripcionGeneral:datosCurso.descripcion_general,
+        descripcion_general:datosCurso.descripcion_general,
         modulos:[]
       }
       this.cursoActual=cursoApi;
@@ -53,12 +44,14 @@ export class CursoActualScreenComponent implements OnInit {
         let listaModulosApi:Array<ModuloCurso>=[];
         for(let i=0;i<datosModulo.length;i++){
           let moduloActual:ModuloCurso={
+            _id:0,
             img:datosModulo[i].img,
-            numeroModulo:datosModulo[i].numero_modulo,
+            numero_modulo:datosModulo[i].numero_modulo,
             titulo:datosModulo[i].titulo,
             descripcion:datosModulo[i].descripcion,
             duracion:datosModulo[i].duracion,
-            urlVideo:datosModulo[i].urlvideo
+            urlvideo:datosModulo[i].urlvideo,
+            fk_curso:0
           }
           listaModulosApi.push(moduloActual);
         }
@@ -79,12 +72,7 @@ export class CursoActualScreenComponent implements OnInit {
 
   eliminarCurso(){
     this.s_estudiante.eliminarCurso(Number(this.s_estudiante.getLS_loginEstudiante()) , this.id_curso).subscribe(datos=>{
-    //  console.log(datos);
-      // if(datos==='Eliminacion Exitosa'){
-        this.nuevaRuta.navigate(['/inicioEstudiante/cursos']);
-      // }else{
-      //   alert("hubo un error en la eliminacion, vuelva a intentarlo");
-      // }
+      this.nuevaRuta.navigate(['/inicioEstudiante/cursos']);
     });
   }
 
