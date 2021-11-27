@@ -1,15 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Curso } from 'src/app/models/curso.model';
-import { FiltroCurso } from 'src/app/models/filtroCurso.model';
+// import { FiltroCurso } from 'src/app/models/filtroCurso.model';
 
 @Pipe({
   name: 'filtroCursos'
 })
 export class FiltroCursosPipe implements PipeTransform {
 
-  transform(listaCursos:Array<Curso>,mod1:boolean, mod2:boolean, mod3:boolean, mod4:boolean, modMas:boolean, temaProg:boolean, temaDiseno:boolean, temaHumanidades:boolean): Array<Curso> {
+  transform(listaCursos:Array<Curso>,mod1:boolean, mod2:boolean, mod3:boolean, mod4:boolean, modMas:boolean, temaProg:boolean, temaDiseno:boolean, temaHumanidades:boolean, textFiltro:string): Array<Curso> {
     
-    let listaCursosRetorno:Array<Curso>=listaCursos.slice();
+    let listaCursosRetorno:Array<Curso>=[];
+    //filtro texto
+    if(textFiltro.length>0){
+      for(let curso of listaCursos)
+        if(curso.titulo.toUpperCase().indexOf(textFiltro.toUpperCase()) > -1) listaCursosRetorno.push(curso);
+    }else 
+      listaCursosRetorno=listaCursos.slice();
+
     //modulos
     let checkMod:boolean=(mod1&&mod2&&mod3&&mod4&&modMas)||(!mod1&&!mod2&&!mod3&&!mod4&&!modMas);
     if(!checkMod){
@@ -19,8 +26,8 @@ export class FiltroCursosPipe implements PipeTransform {
         if(!mod3)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos != 3);
         if(!mod4)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos != 4);
         if(!modMas)listaCursosRetorno=listaCursosRetorno.filter( x => x.cantModulos < 5);
-
     }
+    
     //tema
     let checkTema:boolean=(temaProg&&temaDiseno&&temaHumanidades)||(!temaProg&&!temaDiseno&&!temaHumanidades);
     if(!checkTema){

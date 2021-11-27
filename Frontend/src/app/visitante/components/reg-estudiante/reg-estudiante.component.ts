@@ -49,7 +49,7 @@ export class RegEstudianteComponent implements OnInit {
   validarRegistro(){
     this.s_login.isEmailDisponible(this.formulario.controls['email'].value).subscribe(datos=>{
       if(datos.valor==true){
-        alert("ta bn");
+        // alert("ta bn");
         this.crearEstudiante();
       }else alert('correo ya registrado.');
     });
@@ -72,10 +72,10 @@ export class RegEstudianteComponent implements OnInit {
 
   }
   selectPais(){
-    let valor:number=this.formulario.controls['pais'].value;
-    if(valor==0)  this.listaCiudadActual.splice(0,this.listaCiudadActual.length);
-    if(valor==1)  this.listaCiudadActual=this.listaCiudadChile_.slice();
-    if(valor==2)  this.listaCiudadActual=this.listaCiudadColombia_.slice();
+    let valor:string=this.formulario.controls['pais'].value;
+    if(valor==='null')  this.listaCiudadActual.splice(0,this.listaCiudadActual.length);
+    if(valor==='Chile')  this.listaCiudadActual=this.listaCiudadChile_.slice();
+    if(valor==='Colombia')  this.listaCiudadActual=this.listaCiudadColombia_.slice();
   }
 
 

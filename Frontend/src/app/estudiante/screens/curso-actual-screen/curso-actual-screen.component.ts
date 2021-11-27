@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import { Curso } from 'src/app/models/curso.model';
 import { ModuloCurso } from 'src/app/models/modeloCurso.model';
 import { CursoService } from 'src/app/services/curso/curso.service';
+import { EstudianteService } from 'src/app/services/estudiante/estudiante.service';
 @Component({
   selector: 'app-curso-actual-screen',
   templateUrl: './curso-actual-screen.component.html',
@@ -11,11 +12,13 @@ import { CursoService } from 'src/app/services/curso/curso.service';
 export class CursoActualScreenComponent implements OnInit {
 
   aaa:string="https://www.youtube.com/embed/sxgIKQEZIQI";
+
+
   id_curso:number=99;
   cursoActual:Curso={id:0,img:'', titulo:'',cantModulos:0,duracion:0,tematica:'',descripcionGeneral:'',modulos:[]};
   moduloActual:ModuloCurso={img:'', numeroModulo:0, titulo:'',descripcion:'',duracion:0,urlVideo:''};
   listaModulo:Array<ModuloCurso>=[];
-  constructor(private ruta:ActivatedRoute, private s_curso:CursoService){
+  constructor(private ruta:ActivatedRoute, private s_curso:CursoService, private s_estudiante:EstudianteService, private nuevaRuta:Router){
     this.ruta.params.subscribe(datos =>{
       this.id_curso=datos["idCurso"];
     });
@@ -74,7 +77,16 @@ export class CursoActualScreenComponent implements OnInit {
   }
 
 
-
+  eliminarCurso(){
+    this.s_estudiante.eliminarCurso(Number(this.s_estudiante.getLS_loginEstudiante()) , this.id_curso).subscribe(datos=>{
+    //  console.log(datos);
+      // if(datos==='Eliminacion Exitosa'){
+        this.nuevaRuta.navigate(['/inicioEstudiante/cursos']);
+      // }else{
+      //   alert("hubo un error en la eliminacion, vuelva a intentarlo");
+      // }
+    });
+  }
 
   
   cambiarModulo(nModulo:number){

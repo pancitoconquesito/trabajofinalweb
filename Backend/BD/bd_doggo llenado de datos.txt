@@ -48,17 +48,24 @@ values('coca-cola', 'rrhh@cocacola.com', '123', 123456789,
 	  'descripcion empresa coca-cola', 
 	 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/62/621aa443ed231fe8b6a50a05e3a82b8ffcfe6b0c_full.jpg');
 INSERT INTO empresa (nombre_empresa, correo, contrasena, telefono, descripcion_empresa, img_empresa)
-values('coca-cola', 'rrhh@nintendo.com', '123', 123456789, 
+values('nintendo', 'rrhh@nintendo.com', '123', 123456789, 
 	  'descripcion empresa nintendo', 
 	 'https://i.ytimg.com/vi/9m1rM148Qsw/hqdefault.jpg');
-
-INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa)
+	 
+	 
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
 values('programador coca-cola para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
-	  'Chile', 'Santiago','01-01-2000','Tiempo completo', 'contacto.cocacola@gmail.com',123456789, 1);
-INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa)
+	  'Chile', 'Santiago','01-01-2000','Tiempo completo', 'contacto.cocacola@gmail.com',123456789, 1, true, 100);
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
 values('analista coca-cola para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
-	  'Chile', 'Osorno','01-01-2000','Tiempo parcial', 'contacto.cocacola@gmail.com',123456789, 1);
-
+	  'Chile', 'Osorno','01-01-2000','Tiempo parcial', 'contacto.cocacola@gmail.com',123456789, 1, false, 500);
+	  
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
+values('analista nintendo para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Santiago','01-01-2000','Por horas', 'contacto.nintendo@gmail.com',123456789, 2, true, 100);
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
+values('programador nintendo para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Osorno','01-01-2000','Tiempo parcial', 'contacto.nintendo@gmail.com',123456789, 2, false, 500);
 --------------------
 
 INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(1,1);

@@ -41,6 +41,10 @@ export class EstudianteService {
 		return localStorage.getItem('idEstudiante');
 	}
 
+  public getCursosEstudiante(_id:number):Observable<any>{
+		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/listacursosestudiante/'+_id);
+	}
+
   public addCursoXEstudiante(idEstudiante:number, idCurso:number):Observable<any>{
 		let datos={
 			idEstudiante:idEstudiante, idCurso:idCurso
@@ -51,35 +55,28 @@ export class EstudianteService {
   public getInfoEstudiante(idEstudiante:number):Observable<any>{
     return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getinfoestudiante/'+idEstudiante);
   }
-
-
-
-
-
-
-
-  public UpdateEstudiante(idEstudiante:number, nombres:string, apellidos:string, contrasena:string, cc_reg:string, telefono:number){
-    listaEstudiante.forEach((valor)=>{
-      if(valor._id==idEstudiante){
-        valor.nombres=nombres;
-        valor.apellidos=apellidos;
-        valor.contrasena=contrasena;
-        valor.cc=cc_reg;
-        valor.telefono=telefono;
-      }
-    });
+ 
+  public getPais(_id:number):Observable<any>{
+    return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getpaisestudiante/'+_id);
   }
-  // public UpdateEstudiante(idEstudiante:number, nombres:string, apellidos:string, contrasena:string, cc_reg:string, telefono:number){
-  //   listaEstudiante.forEach((valor)=>{
-  //     if(valor._id==idEstudiante){
-  //       valor.nombres=nombres;
-  //       valor.apellidos=apellidos;
-  //       valor.contrasena=contrasena;
-  //       valor.cc=cc_reg;
-  //       valor.telefono=telefono;
-  //     }
-  //   });
-  // }
+
+
+
+
+
+  public UpdateEstudiante(_id:number, nombres:string, apellidos:string, contrasena:string, cc_reg:string, telefono:number):Observable<any>{
+    let datos={
+			nombres : nombres,
+      apellidos: apellidos,
+      contrasena: contrasena,
+      cc : cc_reg,
+      telefono: telefono
+		}
+    return this.httpcliente.put(environment.hostname+":"+environment.puerto+'/actualizardataestudiante/'+_id, datos);
+  }
+  public eliminarCurso(_idEstudainte:number, _idcurso:number){
+    return this.httpcliente.delete(environment.hostname+":"+environment.puerto+'/eliminarcursoestudiante/'+_idEstudainte+'/'+ _idcurso);
+  }
 
 
 }

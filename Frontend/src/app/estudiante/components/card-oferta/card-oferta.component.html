@@ -1,21 +1,22 @@
 
 <!-- (click)="enter_oferta(lista_dv_cardOferta.nombreEmpresa,lista_dv_cardOferta._id_nubOfertaEmpresa)"  -->
 <div class="container-fluid alto-max" role="button" 
-[routerLink]= "['/inicioEstudiante/ofertas/',lista_dv_cardOferta.nombreEmpresa,lista_dv_cardOferta._id_nubOfertaEmpresa]" >
+[routerLink]= "['/inicioEstudiante/ofertas/', empresa.nombreEmpresa, numeroNub]" >
     <div class="row alto-max">
         <div class="col-8 my-3 d-flex flex-column justify-content-between alto-max">
             <div>
-                <h4>{{lista_dv_cardOferta.titulo}}</h4>
-                <p>{{lista_dv_cardOferta.nombreEmpresa}} | {{lista_dv_cardOferta.pais}}, {{lista_dv_cardOferta.ciudad}}</p>
+                <h4>{{oferta.titulo}}</h4>
+                <p>{{empresa.nombreEmpresa}} | {{oferta.pais}}, {{oferta.ciudad}}</p>
             </div>
             <div>
-                <small>Fecha : {{lista_dv_cardOferta.fechaPublicacion}}</small>
+                <small>Fecha : {{oferta.fechaPublicacion}}</small>
             </div>
         </div>
         <div class="col-4  col-img d-flex align-items-center">
-            <img src={{lista_dv_cardOferta.imgEmpresa}} 
-            alt={{lista_dv_cardOferta.titulo}}
+            <img src={{empresa.imgEmpresa}} 
+            alt={{oferta.titulo}}
             class="m-2 img-oferta  ">
+            <!-- <p>{{numeroNub}} </p> -->
         </div>
     </div>
 </div>

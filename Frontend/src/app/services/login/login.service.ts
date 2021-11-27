@@ -27,25 +27,22 @@ export class LoginService {
 		let retorno:any=this.httpcliente.post(environment.hostname+":"+environment.puerto+'/addEstudiante',datos, this.HttpUploadOptions);
 		return retorno;
 	}
-	// public addEstudiante(nombres:string,apellidos:string,email:string,pais:string,contrasena:string,ciudad:string,cc_reg:string,telefono:number):number{
-	// 	let newId=listaEstudiante[listaEstudiante.length-1]._id+1;
-	// 	let newCursosInscritos:Array<CursoInscrito>=[];
-	// 	let newEstudiante:Estudiante={
-	// 		_id:newId,
-	// 		nombres:nombres,
-	// 		apellidos:apellidos,
-	// 		email:email,
-	// 		pais:pais,
-	// 		contrasena:contrasena,
-	// 		ciudad:ciudad,
-	// 		telefono:telefono,
-	// 		cc:cc_reg,
-	// 		cursosInscritos:newCursosInscritos
-	// 	}
-	// 	listaEstudiante.push(newEstudiante);
-	// 	console.log(ciudad);
-	// 	return newId;
-	// }
+
+
+
+
+
+
+
+
+
+
+	public logearEstudiante(email:string, contrasena:string):Observable<any>{
+		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/logearestudiante/'+email+'/'+contrasena); 
+	};
+
+
+
 
 
 

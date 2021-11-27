@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EstudianteRoutingModule } from './estudiante-routing.module';
 import { EstudianteComponent } from './estudiante.component';
-// import { InicioComponent } from './screens/inicio/inicio.component';
 
-// import {InicioScreensComponent} from './screens/inicio-screens/inicio-screens.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { InicioScreensComponent } from './screens/inicio-screens/inicio-screens.component';
@@ -20,6 +18,7 @@ import { CantModulosCursoPipe } from '../pipes/cantModulosCurso/cant-modulos-cur
 import { MinutosParseHrMinPipe } from '../pipes/minutosParseHrMin/minutos-parse-hr-min.pipe';
 import { FormsModule } from '@angular/forms';
 import { FiltroCursosPipe } from '../pipes/filtroCursos/filtro-cursos.pipe';
+import {FiltroOfertaPipe} from '../pipes/filtro-oferta/filtro-oferta.pipe';
 import { CursoDescripcionScreenComponent } from './screens/curso-descripcion-screen/curso-descripcion-screen.component';
 import { CardModuloDescripcionComponent } from './components/card-modulo-descripcion/card-modulo-descripcion.component';
 import { ConfiguracionComponent } from './screens/configuracion/configuracion.component';
@@ -47,7 +46,7 @@ const COMPONENTES=[
     CantModulosCursoPipe,
     MinutosParseHrMinPipe,
     FiltroCursosPipe,
-    
+    FiltroOfertaPipe
     
     
   ],

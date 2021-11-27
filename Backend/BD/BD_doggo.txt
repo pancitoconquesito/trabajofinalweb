@@ -39,7 +39,7 @@ create table estudiante(
 	contrasena varchar(10) not null,
 	pais varchar(50) not null,
 	ciudad varchar(50) not null,
-	telefono integer not null,
+	telefono bigint not null,
 	cc varchar(30) not null,
 	
 	constraint pk_estudiante primary key (_id),
@@ -66,7 +66,7 @@ create table empresa(
 	nombre_empresa varchar(50) not null,
 	correo varchar(50) not null,
 	contrasena varchar(15) not null,
-	telefono integer not null,
+	telefono bigint not null,
 	descripcion_empresa varchar(500) not null,
 	img_empresa varchar(500) not null,
 	
@@ -87,6 +87,8 @@ create table oferta(
 	correo_contacto_reclutar varchar(30) not null,
 	telefono_contacto_laboral integer not null,
 	fk_empresa integer not null,
+	teletrabajo bool not null,
+	sueldo integer not null,
 	
 	constraint pk_oferta primary key (_id),
 	constraint fk_empresa_ foreign key (fk_empresa)

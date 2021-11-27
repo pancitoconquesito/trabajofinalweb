@@ -26,7 +26,8 @@ const routes: Routes = [
         {path:'ofertas', component:OfertasScreenComponent},
         {path:'ofertas/:nombreCurso/:idNUBOfertaEmpresa', component:OfertaActualScreenComponent}
       ]
-  }
+  },
+  // {path:'inicioEmpresa', component:},
 ];
 
 @NgModule({

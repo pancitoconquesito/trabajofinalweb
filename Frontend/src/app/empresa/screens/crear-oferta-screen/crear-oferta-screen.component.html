@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="row bg-1 my-5">
+        <div class="col-md-12 col-lg-8 offset-lg-2" *ngIf="!formularioCompleto">
+
+            <!-- formulario de login -->
+                <form [formGroup]="formulario"
+                
+                    novalidate>
+
+                    <!-- titulo -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" formControlName="titulo"
+                        placeholder="Titulo (entre 3 y 30 caracteres)">
+                        <div *ngIf="formulario.controls['titulo'].invalid && (formulario.controls['titulo'].touched || formulario.controls['titulo'].dirty)" 
+                        class="alert alert-danger">
+                            <div *ngIf="formulario.controls['titulo'].hasError('required')">Campo es obligatorio</div>
+                            <div *ngIf="formulario.controls['titulo'].hasError('minlength') || formulario.controls['titulo'].hasError('maxlength')">Debe contener entre 3 y 30 caracteres</div>
+                        </div>
+                    </div>
+                    
+                    <!-- descripcion -->
+                    <div class="mb-4">
+                        <div class="form-group">
+                            <label for="descripcion">Descripción (entre 10 y 500 caracteres)</label>
+                            <textarea class="form-control" id="descripcion" rows="3" formControlName="descripcion"></textarea>
+                            
+                            <div *ngIf="formulario.controls['descripcion'].invalid && (formulario.controls['descripcion'].touched || formulario.controls['descripcion'].dirty)" 
+                            class="alert alert-danger">
+                                <div *ngIf="formulario.controls['descripcion'].hasError('required')">Campo es obligatorio</div>
+                                <div *ngIf="formulario.controls['descripcion'].hasError('minlength') || formulario.controls['descripcion'].hasError('maxlength')">Debe contener entre 10 y 500 caracteres</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- pais -->
+                    <div class="col-md-12 col-lg-6 my-3">
+                        <select (change)="selectPais()" class="form-select" aria-label="asdf"
+                        formControlName="pais">
+                            <option selected value="0" >- Selecciona tu País -</option>
+                            <option value="Chile">Chile</option>
+                            <option value="Colombia">Colombia</option>
+                        </select>
+                    </div>
+
+                    <!-- ciudad -->
+                    <div class="col-md-12 col-lg-6 my-3">
+                        <select class="form-select" aria-label="asdf"
+                        formControlName="ciudad">
+                            <option selected value="0" >- Selecciona tu Ciudad -</option>
+                            <option value={{item}} *ngFor="let item of listaCiudadActual">{{item}}</option> 
+                        </select>
+                    </div>
+
+
+                    <!-- tipojornada -->
+                    <div class="col-md-12 col-lg-6 my-3">
+                        <select class="form-select" aria-label="asdf"
+                        formControlName="tipojornada">
+                            <option selected value="0" >- Tipo Jornada -</option>
+                            <option value="Tiempo completo">Tiempo completo</option>
+                            <option value="Tiempo parcial">Tiempo parcial</option>
+                            <option value="Por horas">Por horas</option>
+                        </select>
+                    </div>
+
+                    <!-- email -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" formControlName="email"
+                        placeholder="Correo (maximo 30 caracteres)">
+                        <div *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)" 
+                        class="alert alert-danger">
+                            <div *ngIf="formulario.controls['email'].hasError('required')">Campo es obligatorio</div>
+                            <div *ngIf="formulario.controls['email'].hasError('minlength') || formulario.controls['email'].hasError('maxlength')">Debe contener máximo 30 caracteres</div>
+                            <div *ngIf="formulario.controls['email'].hasError('email')">Formato de email incorrecto.</div>
+                        </div>
+                    </div>
+
+
+                     <!-- telefono -->
+                    <div class="mb-4">
+                        <input type="tel" class="form-control" formControlName="telefono"
+                        placeholder="Teléfono (entre 1 y 15 dígitos)">
+                        <div *ngIf="formulario.controls['telefono'].invalid && (formulario.controls['telefono'].touched || formulario.controls['telefono'].dirty)" 
+                        class="alert alert-danger">
+                            <div *ngIf="formulario.controls['telefono'].hasError('required')">Campo es obligatorio</div>
+                            <div *ngIf="formulario.controls['telefono'].hasError('pattern')">Formato incorrecto</div>
+                        </div>
+                    </div>
+
+                    <!-- teletrabajo -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="teletrabajo" formControlName="teletrabajo"> 
+                            <label class="form-check-label" for="teletrabajo">
+                              Con sistema de teletrabajo
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                    <!-- sueldo -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" formControlName="sueldo"
+                        placeholder="Sueldo (entre 1 y 15 dígitos)">
+                        <div *ngIf="formulario.controls['sueldo'].invalid && (formulario.controls['sueldo'].touched || formulario.controls['sueldo'].dirty)" 
+                        class="alert alert-danger">
+                            <div *ngIf="formulario.controls['sueldo'].hasError('required')">Campo es obligatorio</div>
+                            <div *ngIf="formulario.controls['sueldo'].hasError('pattern')">Formato incorrecto</div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- boton login -->
+                    <div class="text-center">
+                        <button [disabled]="!formulario.valid" type="submit" class="btn btn-primary"
+                        (click)="validar()"
+                        >Iniciar Sesión</button>
+                    </div>
+                </form>
+
+
+
+
+        </div>
+        <div class="col-md-12 col-lg-8 offset-lg-2 my-5" *ngIf="formularioCompleto">
+            <div class="alert alert-success" role="alert">
+                Oferta cerada exitosamente!
+              </div>
+        </div>
+    </div>
+</div>

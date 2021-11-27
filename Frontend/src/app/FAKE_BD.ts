@@ -29,7 +29,9 @@ export let listaEmpresas_:Array<CuentaEmpresa>=[
                 tipoJornada:'Tiempo completo',
                 fk_idEmpresa:1,
                 correo_contacto_reclutar:'contacto.cocacola@gmail.com',
-                telefono_contacto_laboral:123456789
+                telefono_contacto_laboral:123456789,
+                teletrabajo:false,
+                salario:0
             },
             {
                 _id:2,
@@ -41,7 +43,9 @@ export let listaEmpresas_:Array<CuentaEmpresa>=[
                 tipoJornada:'Tiempo parcial',
                 fk_idEmpresa:1,
                 correo_contacto_reclutar:'contacto.cocacola@gmail.com',
-                telefono_contacto_laboral:123456789
+                telefono_contacto_laboral:123456789,
+                teletrabajo:false,
+                salario:0
             },
         ]
     },
@@ -64,7 +68,9 @@ export let listaEmpresas_:Array<CuentaEmpresa>=[
                 tipoJornada:'Por horas',
                 fk_idEmpresa:2,
                 correo_contacto_reclutar:'contacto.nintendo@gmail.com',
-                telefono_contacto_laboral:123456789
+                telefono_contacto_laboral:123456789,
+                teletrabajo:false,
+                salario:0
             },
             {
                 _id:4,
@@ -76,7 +82,9 @@ export let listaEmpresas_:Array<CuentaEmpresa>=[
                 tipoJornada:'Tiempo parcial',
                 fk_idEmpresa:2,
                 correo_contacto_reclutar:'contacto.nintendo@gmail.com',
-                telefono_contacto_laboral:123456789
+                telefono_contacto_laboral:123456789,
+                teletrabajo:false,
+                salario:0
             },
         ]
     },   

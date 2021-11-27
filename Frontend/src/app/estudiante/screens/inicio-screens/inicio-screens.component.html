@@ -1,1 +1,33 @@
-<p>inicio-screens works!</p>
+
+<div class="container fondo alturaMax">
+    <div class="row ">
+        <h4>Bienvenido {{nombreEstudante}} </h4>
+    </div>
+    <div class="row">
+        <h4 class="text-center">Mis Cursos</h4>
+        <div class="col-12 text-center" *ngIf="sinCursos">Sin cursos inscritos actualmente</div>
+        <div class="col-12 text-center" *ngIf="!sinCursos">
+
+            <div class="container">
+                <div class="row my-5 justify-content-center"> 
+
+                    <div class="col-12 col-sm-6 col-lg-4" 
+                    *ngFor="let curso of listacursosestudiante">
+
+                        <app-card-curso [curso]=curso></app-card-curso>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 my-2 text-center">
+            <button class="rounded my-3 mx-5"
+            routerLink="../configuracion">
+                Editar Cuenta
+            </button>
+        </div>
+    </div>
+</div>

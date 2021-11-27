@@ -9,4 +9,6 @@ export interface OfertaLaboral{
     fk_idEmpresa:number;
     correo_contacto_reclutar:string;
     telefono_contacto_laboral:number;
+    teletrabajo:boolean;
+    salario:number;
 }

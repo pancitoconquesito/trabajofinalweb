@@ -15,7 +15,7 @@ export class CursosScreenComponent implements OnInit {
   filtro_cantModulos:number=0;
   filtro:FiltroCurso;
 
-  textFiltro:string='...';
+  textFiltro:string;
   temaProg:any;temaDiseno:any;temaHumanidades:any;
   mod1:any;mod2:any;mod3:any;mod4:any;modMas:any;
   constructor(private s_curso:CursoService, private rutaparam:ActivatedRoute, private s_estudiante:EstudianteService) {
@@ -29,6 +29,7 @@ export class CursosScreenComponent implements OnInit {
       temaDiseno:false,
       temaHumanidades:false
       }
+    this.textFiltro='';
    }
 
   ngOnInit(): void {

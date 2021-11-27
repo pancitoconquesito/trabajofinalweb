@@ -6,9 +6,9 @@ import {VisitanteComponent} from './visitante/visitante.component';
 const routes: Routes = [
   {path:'', redirectTo:"/visitante", pathMatch:'full'},
   {path:'visitante', component:VisitanteComponent},
-  // {path:'visitante', loadChildren: ()=> import('./visitante/visitante.module').then(m => m.VisitanteModule)},
   {path:'estudiante', loadChildren: ()=> import('./estudiante/estudiante.module').then(m => m.EstudianteModule)},
-  {path:'publicador', loadChildren: ()=> import('./publicador-oferta/publicador-oferta.module').then(m => m.PublicadorOfertaModule)}
+  {path:'empresa', loadChildren: ()=> import('./empresa/empresa.module').then(m => m.EmpresaModule)},
+  {path:'admin', loadChildren: ()=> import('./admin/admin-routing.module').then(m => m.AdminRoutingModule)}
 ];
 
 @NgModule({

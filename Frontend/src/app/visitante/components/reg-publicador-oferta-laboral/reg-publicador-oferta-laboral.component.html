@@ -4,52 +4,99 @@
     novalidate
     class="">
 
-        <div class="d-flex justify-content-center">
-            <div class="row mb-4">
-                <!-- nombres -->
-                <div class="col">
-                    <input type="text" class="form-control" formControlName="nombreEmpresa"
-                    placeholder="Nombre Empresa">
-                    <div *ngIf="formulario.controls['nombreEmpresa'].invalid && (formulario.controls['nombreEmpresa'].touched || formulario.controls['nombreEmpresa'].dirty)" 
-                    class="alert alert-danger">
-                        <div *ngIf="formulario.controls['nombreEmpresa'].hasError('required')">Campo es obligatorio</div>
-                    </div>
+    <div class="d-flex justify-content-center">
+        <div class="row ">
+            <!-- nombre empresa -->
+            <div class="col-md-12 col-lg-6 my-3">
+                <input type="text" class="form-control" formControlName="nombreEmpresa"
+                placeholder="Nombre Empresa (entre 5 y 50 caracteres)">
+                <div *ngIf="formulario.controls['nombreEmpresa'].invalid && (formulario.controls['nombreEmpresa'].touched || formulario.controls['nombreEmpresa'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['nombreEmpresa'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['nombreEmpresa'].hasError('minlength') || formulario.controls['nombreEmpresa'].hasError('maxlength')">debe contener entre 10 y 30 caracteres</div>
                 </div>
-                <!-- apellidos -->
-                <div class="col">
-                    <input type="text" class="form-control" formControlName="email"
-                    placeholder="Email">
-                    <div *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)" 
-                    class="alert alert-danger">
-                        <div *ngIf="formulario.controls['email'].hasError('required')">Campo es obligatorio</div>
-                        <div *ngIf="formulario.controls['email'].hasError('email')">Formato de email incorrecto</div>
-                    </div>
+            </div>
+            <!-- correo-->
+            <div class="col-md-12 col-lg-6 my-3">
+                <input type="email" class="form-control" formControlName="correo"
+                placeholder="Email Empresa (maximo 30 caracteres)">
+                <div *ngIf="formulario.controls['correo'].invalid && (formulario.controls['correo'].touched || formulario.controls['correo'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['correo'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['correo'].hasError('minlength') || formulario.controls['correo'].hasError('correo')">debe contener maximo 30 caracteres</div>
+                    <div *ngIf="formulario.controls['correo'].hasError('email')">Formato de correo incorrecto.</div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="d-flex justify-content-center">
-            <div class="row mb-4">
-                <!-- contrasena -->
-                <div class="col">
-                    <input type="password" class="form-control" formControlName="contrasena"
-                    placeholder="Contraseña">
-                    <div *ngIf="formulario.controls['contrasena'].invalid && (formulario.controls['contrasena'].touched || formulario.controls['contrasena'].dirty)" 
-                    class="alert alert-danger">
-                        <div *ngIf="formulario.controls['contrasena'].hasError('required')">Campo es obligatorio</div>
-                    </div>
+    <div class="d-flex justify-content-center">
+        <div class="row ">
+            <!-- password -->
+            <div class="col-md-12 col-lg-6 my-3">
+                <input type="text" class="form-control" formControlName="password"
+                placeholder="Contraseña (entre 5 y 15 caracteres)">
+                <div *ngIf="formulario.controls['password'].invalid && (formulario.controls['password'].touched || formulario.controls['password'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['password'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['password'].hasError('minlength') || formulario.controls['password'].hasError('maxlength')">debe contener entre 5 y 15 caracteres</div>
                 </div>
-                <!-- algoMas -->
-                <div class="col">
-                    <input type="text" class="form-control" formControlName="mas"
-                    placeholder="Algo Más??">
-                    
+            </div>
+            <!-- telefono-->
+            <div class="col-md-12 col-lg-6 my-3">
+                <input type="tel" class="form-control" formControlName="telefono"
+                placeholder="Telefono (entre 5 y 15 dígitos)">
+                <div *ngIf="formulario.controls['telefono'].invalid && (formulario.controls['telefono'].touched || formulario.controls['telefono'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['telefono'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['telefono'].hasError('pattern')">Formato incorrecto (entre 5 y 15 dígitos)</div>
                 </div>
             </div>
         </div>
+    </div>
+
+    
+    <div class="d-flex justify-content-center">
+        <div class="row ">
+            <!-- descripcionEmpresa -->
+            <div class="col-md-12 col-lg-6 my-3">
+
+                <div class="form-group">
+                    <label for="descripcionEmpresa">Descripción Empresa (entre 5 y 500 caracteres)</label>
+                    <textarea class="form-control" id="descripcionEmpresa" rows="5"></textarea>
+                </div>
+                <!-- <div *ngIf="formulario.controls['descripcionEmpresa'].invalid && (formulario.controls['descripcionEmpresa'].touched || formulario.controls['descripcionEmpresa'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['descripcionEmpresa'].hasError('descripcionEmpresa')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['descripcionEmpresa'].hasError('descripcionEmpresa') || formulario.controls['descripcionEmpresa'].hasError('maxlength')">debe contener entre 5 y 500 caracteres</div>
+                </div> -->
+            </div>
+            <!-- imgEmpresa-->
+            <div class="col-md-12 col-lg-6 my-3">
+                <input type="text" class="form-control" formControlName="imgEmpresa"
+                placeholder="Url Imagen Empresa">
+                <div *ngIf="formulario.controls['imgEmpresa'].invalid && (formulario.controls['imgEmpresa'].touched || formulario.controls['imgEmpresa'].dirty)" 
+                class="alert alert-danger">
+                    <div *ngIf="formulario.controls['imgEmpresa'].hasError('required')">Campo es obligatorio</div>
+                    <div *ngIf="formulario.controls['imgEmpresa'].hasError('maxlength')">Maximo 500 caracteres</div>
+                </div>
+            </div>
+            <!-- <div class="col-md-12 col-lg-6 my-3">
+                <input type="file" id="file" accept="image/*" (change)="capturarArchivo($event)"  />
+                <div>
+                    <h5 class="text-center my-2">Preview Imagen</h5>
+                    <div *ngIf="preview" class="border shadow text-center">
+                        <img [src]="preview" alt="" class="imgpreview">
+
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
 
 
-        <div class="text-center my-3">
+
+    <div class="text-center my-3">
 
             <button [disabled]="!formulario.valid" type="submit" 
             class="btn btn-primary rounded">Registrarse</button>
