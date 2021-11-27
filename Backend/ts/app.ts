@@ -118,7 +118,6 @@ app.get('/getcurso/:idCurso',(req:any, res:any)=>{
   });
 });
 
-
 app.post('/addcursoxestudiante',jsonParser,(req:any, res:any)=>{
   // console.log("body__"+req.body);
   client.query(`INSERT INTO "nub_estudiante_curso" (id_estudiante, id_curso) values($1, $2) RETURNING *`,[req.body.idEstudiante, req.body.idCurso] ,(err:any, respuesta:any)=>{
@@ -186,7 +185,6 @@ app.get('/listacursosestudiante/:_id',(req:any, res:any)=>{
   });
 });
 
-
 app.delete('/eliminarcursoestudiante/:_idEstudainte/:_idcurso',(req:any, res:any)=>{
   client.query(`delete from "nub_estudiante_curso" where "id_estudiante"=$1 and "id_curso"=$2`,[req.params._idEstudainte, req.params._idcurso],(err:any, respuesta:any)=>{
     // res.status(200).send("Eliminacion Exitosa");
@@ -230,10 +228,6 @@ where "sis_listaofertas"."_idnub" = $1`,[req.params._idnub],(err:any, respuesta:
     res.send(empresa);
     // res.send(respuesta);
   });
-
-
-
-  
 });
 
 
