@@ -49,6 +49,7 @@ export class CrearOfertaScreenComponent implements OnInit {
         else alert("Correo ya registrado.");
       });
     }else alert("complete formulario");
+    
   }
   addOferta(){
     //agregar y mostrar mensaje de agregado
