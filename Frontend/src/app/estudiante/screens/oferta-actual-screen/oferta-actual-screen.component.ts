@@ -14,8 +14,7 @@ export class OfertaActualScreenComponent implements OnInit {
   nombre:string='';
   idNubOfertaEmpresa:number=1
   dataEmpresaOferta:CuentaEmpresa={ _id:0, nombreEmpresa: '', correo:'', password:'', telefono:0, descripcionEmpresa:'', imgEmpresa:'', ofertasPublicadas:[]};
-  oferta:OfertaLaboral={ _id:0, titulo:'', descripcion:'', pais:'', ciudad:'', fechaPublicacion:'', tipoJornada:'', fk_idEmpresa:0, correo_contacto_reclutar:'', telefono_contacto_laboral:0, teletrabajo:false, salario:0
-  }
+  oferta:OfertaLaboral={_id:0,titulo:'',descripcion:'',pais:'',ciudad:'',fecha_publicacion:'',tipo_jornada:'',correo_contacto_reclutar:'',telefono_contacto_laboral:0,fk_idEmpresa:0,teletrabajo:false,salario:0};
   constructor(private ruta:ActivatedRoute, private serviceOferta:OfertaService) { 
     this.ruta.params.subscribe( param=>{
       this.nombre=param['nombre'];

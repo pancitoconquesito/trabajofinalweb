@@ -12,8 +12,7 @@ import { OfertaService } from 'src/app/services/oferta/oferta.service';
 })
 export class CardOfertaComponent implements OnInit {
 
-  @Input() oferta:OfertaLaboral={ _id:0, titulo:'', descripcion:'', pais:'', ciudad:'', fechaPublicacion:'', tipoJornada:'', fk_idEmpresa:0, correo_contacto_reclutar:'', telefono_contacto_laboral:0,teletrabajo:false,
-  salario:0};
+  @Input() oferta:OfertaLaboral={_id:0,titulo:'',descripcion:'',pais:'',ciudad:'',fecha_publicacion:'',tipo_jornada:'',correo_contacto_reclutar:'',telefono_contacto_laboral:0,fk_idEmpresa:0,teletrabajo:false,salario:0};
   empresa:CuentaEmpresa={_id:0,nombreEmpresa:'',correo:'',password:'',telefono:0,descripcionEmpresa:'',imgEmpresa:'',ofertasPublicadas:[]
 }
   numeroNub:number=0;

@@ -10,6 +10,7 @@ import { OfertaDetalleScreenComponent } from './screens/oferta-detalle-screen/of
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
+import { CardMiOfertaComponent } from './components/card-mi-oferta/card-mi-oferta.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {SharedModule} from '../shared/shared.module';
     ConfiguracionScreenComponent,
     OfertaDetalleScreenComponent,
     NavBarComponent,
+    CardMiOfertaComponent,
   ],
   imports: [
     CommonModule,

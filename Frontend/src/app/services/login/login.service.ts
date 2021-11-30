@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { listaEstudiante, listaEmpresas_ } from 'src/app/FAKE_BD';
+// import { listaEstudiante, listaEmpresas_ } from 'src/app/FAKE_BD';
 import { CursoInscrito, Estudiante } from 'src/app/models/estudiante.model';
 
 import{HttpClient, HttpHeaders} from '@angular/common/http';
@@ -28,15 +28,6 @@ export class LoginService {
 		return retorno;
 	}
 
-
-
-
-
-
-
-
-
-
 	public logearEstudiante(email:string, contrasena:string):Observable<any>{
 		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/logearestudiante/'+email+'/'+contrasena); 
 	};
@@ -58,23 +49,26 @@ export class LoginService {
 
 
 
-	public checkLoginEstudiante(email:string, clave :string):boolean{
-		let respuesta:boolean=false;
-		listaEstudiante.forEach((valor)=>{
-			if(valor.email===email){
-				if(valor.contrasena===clave){
-					respuesta= true;
-				} 
-			}
-		});
-		return respuesta;
+	public checkLoginEstudiante(email:string, clave :string){
+		// let respuesta:boolean=false;
+		// listaEstudiante.forEach((valor)=>{
+		// 	if(valor.email===email){
+		// 		if(valor.contrasena===clave){
+		// 			respuesta= true;
+		// 		} 
+		// 	}
+		// });
+		// return respuesta;
 	}
-	public getIdEstudiante(email:string):number{
-		let idRetorno:number=0;
-		listaEstudiante.forEach((valor)=>{
-			if(valor.email===email)	idRetorno=valor._id;
-		});
-		return idRetorno;
+	public getIdEstudiante(email:string):Observable<any>{
+
+		return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getIdEstudiante/'+email); 
+		
+		// let idRetorno:number=0;
+		// listaEstudiante.forEach((valor)=>{
+		// 	if(valor.email===email)	idRetorno=valor._id;
+		// });
+		// return idRetorno;
 	}
 
 	

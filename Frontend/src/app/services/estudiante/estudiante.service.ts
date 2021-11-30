@@ -15,7 +15,7 @@ export class EstudianteService {
   HttpUploadOptions = {
 		headers: new HttpHeaders({ Accept: 'application/json' }),
 	};
-  isCursoEnColeccion(idEstudiante:number, idCurso:number):Observable<any>{
+  iscursoXestudiante(idEstudiante:number, idCurso:number):Observable<any>{
     return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/iscursoXestudiante/'+idEstudiante+'/'+idCurso);
   }
 

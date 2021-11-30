@@ -45,7 +45,8 @@ client.connect();
 // });
 app.get('/isemaildisponible/:email', function (req, res) {
     var email = req.params.email;
-    client.query("select distinct 'no disponible' as \"res\" \n  from \"estudiante\", \"empresa\" , \"admin\"\n  where \"estudiante\".\"email\" = $1 \n  or \"empresa\".\"correo\" = $1\n  or \"data_admin\".\"email\" = $1", [email], function (err, respuesta) {
+    client.query("select distinct 'no disponible' as \"res\" \n  from \"estudiante\", \"empresa\" , \"data_admin\"\n  where \"estudiante\".\"email\" = $1 \n  or \"empresa\".\"correo\" = $1\n  or \"data_admin\".\"email\" = $1", [email], function (err, respuesta) {
+        // res.send(respuesta);
         if (respuesta.rows[0] == undefined)
             res.send({ valor: true });
         else
@@ -145,8 +146,16 @@ app.get('/logearestudiante/:email/:contrasena', function (req, res) {
             res.send({ acceso: false });
     });
 });
+app.get('/getOfertasEmpresa/:_id', function (req, res) {
+    client.query("select * from \"oferta\" where \"fk_empresa\"=$1 ", [req.params._id], function (err, respuesta) {
+        res.send(respuesta.rows);
+        // if(respuesta.rows[0]!=undefined){
+        //   res.send({acceso:true, _id:respuesta.rows[0]._id});
+        // }else res.send({acceso:false});
+    });
+});
 app.get('/listacursosestudiante/:_id', function (req, res) {
-    client.query("select  \"id_curso\" as \"id\", \"curso\".\"img\", \"curso\".\"titulo\", \"curso\".\"cant_modulos\" as \"cantModulos\", \"curso\".\"duracion\", \"curso\".\"tematica\", \"curso\".\"descripcion_general\" as \"descripcionGeneral\", null as \"modulos\"\n  from \"nub_estudiante_curso\"\n  join \"estudiante\" on \"estudiante\".\"_id\" =\"nub_estudiante_curso\".\"id_estudiante\"\n  join \"curso\" on \"curso\".\"_id\" = \"nub_estudiante_curso\".\"id_curso\"\n  where \"estudiante\".\"_id\"=$1 ", [req.params._id], function (err, respuesta) {
+    client.query("select  \"id_curso\" as \"_id\", \"curso\".\"img\", \"curso\".\"titulo\", \"curso\".\"cant_modulos\" as \"cantModulos\", \"curso\".\"duracion\", \"curso\".\"tematica\", \"curso\".\"descripcion_general\" as \"descripcionGeneral\", null as \"modulos\"\n  from \"nub_estudiante_curso\"\n  join \"estudiante\" on \"estudiante\".\"_id\" =\"nub_estudiante_curso\".\"id_estudiante\"\n  join \"curso\" on \"curso\".\"_id\" = \"nub_estudiante_curso\".\"id_curso\"\n  where \"estudiante\".\"_id\"=$1 ", [req.params._id], function (err, respuesta) {
         // console.log(respuesta);
         var listaRetono = [];
         for (var _i = 0, _a = respuesta.rows; _i < _a.length; _i++) {
@@ -158,6 +167,12 @@ app.get('/listacursosestudiante/:_id', function (req, res) {
 });
 app.delete('/eliminarcursoestudiante/:_idEstudainte/:_idcurso', function (req, res) {
     client.query("delete from \"nub_estudiante_curso\" where \"id_estudiante\"=$1 and \"id_curso\"=$2", [req.params._idEstudainte, req.params._idcurso], function (err, respuesta) {
+        // res.status(200).send("Eliminacion Exitosa");
+        res.send(respuesta);
+    });
+});
+app.delete('/eliminarOfertaEmpresa/:_id', function (req, res) {
+    client.query("delete from \"oferta\" where \"_id\"=$1 ", [req.params._id], function (err, respuesta) {
         // res.status(200).send("Eliminacion Exitosa");
         res.send(respuesta);
     });
@@ -219,9 +234,19 @@ app.get('/logearEmpresa/:email/:contrasena', function (req, res) {
             res.send({ acceso: false });
     });
 });
+app.get('/getIdEstudiante/:email', function (req, res) {
+    client.query("select * from \"estudiante\" where \"email\"=$1", [req.params.email], function (err, respuesta) {
+        // console.log(respuesta);
+        if (respuesta.rows[0] != undefined) {
+            res.send({ acceso: true, _id: respuesta.rows[0]._id });
+        }
+        else
+            res.send({ acceso: false });
+    });
+});
 app.get('/isEmpresaDisponible/:correo', function (req, res) {
-    client.query("select distinct 'no disponible' as \"res\" \n  from \"estudiante\", \"empresa\" , \"admin\"\n  where \"estudiante\".\"email\" = $1 \n  or \"empresa\".\"correo\" = $1\n  or \"data_admin\".\"email\" = $1", [req.params.correo], function (err, respuesta) {
-        // res.send(respuesta.rows[0]);
+    client.query("select distinct 'no disponible' as \"res\" \n  from \"estudiante\", \"empresa\" , \"data_admin\"\n  where \"estudiante\".\"email\" = $1 \n  or \"empresa\".\"correo\" = $1\n  or \"data_admin\".\"email\" = $1", [req.params.correo], function (err, respuesta) {
+        // res.send(respuesta);
         if (respuesta.rows[0] != undefined) {
             res.send({ valor: false });
         }

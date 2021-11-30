@@ -23,6 +23,7 @@ export class InicioScreensComponent implements OnInit {
       this.estudiante=datos;
       // console.log(this.estudiante);
     });
+
     // console.log("id estudiante : "+idEstudiante);
 
     

@@ -1,0 +1,19 @@
+
+
+
+  <div class="card">
+    <h5 class="card-header">{{oferta.titulo}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">pais : {{oferta.pais}} | ciudad : {{oferta.ciudad}} </h5>
+      <p class="card-text">Descripcion: {{oferta.descripcion}}</p>
+      <hr>
+      <p>fecha_publicacion : {{oferta.fecha_publicacion}} </p> 
+        <p>tipo_jornada : {{oferta.tipo_jornada}} </p> 
+        <p>correo_contacto_reclutar : {{oferta.correo_contacto_reclutar}} </p> 
+        <p>telefono_contacto_laboral : {{oferta.telefono_contacto_laboral}} </p> 
+        <p>teletrabajo : {{oferta.teletrabajo}} </p> 
+        <p>salario : {{oferta.salario}} </p> 
+        <hr>
+      <button (click)="eliminar()" class="btn btn-primary">Eliminar</button>
+    </div>
+  </div>

@@ -7,14 +7,14 @@ import { dv_OfertaActual } from 'src/app/models/dv_oferta_actual.model';
 import { nub_OfertaEmpresa } from 'src/app/models/nub_oferta_empresa_model';
 import { OfertaLaboral } from 'src/app/models/oferta_laboral.model';
 import { environment } from 'src/environments/environment';
-import {listaEmpresas_, listaNub_} from '../../FAKE_BD';//FIXME
+// import {listaEmpresas_, listaNub_} from '../../FAKE_BD';//FIXME
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfertaService {
 
-  listaEmpresas_=listaEmpresas_;
+  // listaEmpresas_=listaEmpresas_;
 
   constructor(private httpcliente:HttpClient) { }
 

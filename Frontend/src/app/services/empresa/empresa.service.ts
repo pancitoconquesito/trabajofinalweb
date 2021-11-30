@@ -16,6 +16,9 @@ export class EmpresaService {
   public isEmpresaDisponible(correo:string):Observable<any>{
     return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/isEmpresaDisponible/'+correo); 
   }
+  public getOfertasEmpresa(_id:number):Observable<any>{
+    return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getOfertasEmpresa/'+_id); 
+  }
   public addEmpresa(nombreEmpresa:string, correo:string, password:string, telefono:number, descripcionEmpresa:string, imgEmpresa:string):Observable<any>{
     let obj:any={
       nombreEmpresa:nombreEmpresa,
@@ -59,6 +62,9 @@ export class EmpresaService {
     return this.httpcliente.post(environment.hostname+":"+environment.puerto+'/addOfertaSis', obj, this.HttpUploadOptions); 
   }
 
-
+  
+  public eliminarOfertaEmpresa(_id:number){
+    return this.httpcliente.delete(environment.hostname+":"+environment.puerto+'/eliminarOfertaEmpresa/'+_id);
+  }
 
 }

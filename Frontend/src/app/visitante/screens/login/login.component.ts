@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
   validar():void{
 
+    
     let checkLogin:number=0;
     this.s_login.logearEstudiante(this.formulario.controls['email'].value,this.formulario.controls['clave'].value).subscribe(datos=>{
       if(datos.acceso==true){
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
     });
     //logear empresa
     this.s_login.logearEmpresa(this.formulario.controls['email'].value,this.formulario.controls['clave'].value).subscribe(datos=>{
+      console.log(datos);
       if(datos.acceso==true){
         //guardamos contexto de idEstudiante
         this.s_empresa.saveLS_empresa(datos._id);
@@ -56,9 +58,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin']);
         // console.log("OK");
       }else checkLogin++;
+      if(checkLogin==3)alert('Datos incorrectos, usuario no registrado.');
     });
-    if(checkLogin==3)alert('Datos incorrectos, usuario no registrado.');
-
   }
   btn_registrar():void{
     this.register_event.emit("1");

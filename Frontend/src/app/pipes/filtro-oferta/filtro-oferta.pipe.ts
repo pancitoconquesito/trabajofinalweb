@@ -28,9 +28,9 @@ export class FiltroOfertaPipe implements PipeTransform {
     //jornada
     let checkJornada:boolean=(completo&&parcial&&horas)||(!completo&&!parcial&&!horas);
     if(!checkJornada){
-      if(!completo)listaOfertasRetorno=listaOfertasRetorno.filter(x => x.tipoJornada!=='Tiempo completo');
-      if(!parcial)listaOfertasRetorno=listaOfertasRetorno.filter(x => x.tipoJornada!=='Tiempo parcial');
-      if(!horas)listaOfertasRetorno=listaOfertasRetorno.filter(x => x.tipoJornada!=='Por horas');
+      if(!completo)listaOfertasRetorno=listaOfertasRetorno.filter(x => x.tipo_jornada!=='Tiempo completo');
+      if(!parcial)listaOfertasRetorno=listaOfertasRetorno.filter(x => x.tipo_jornada!=='Tiempo parcial');
+      if(!horas)listaOfertasRetorno=listaOfertasRetorno.filter(x => x.tipo_jornada!=='Por horas');
     }
     return listaOfertasRetorno;
   }

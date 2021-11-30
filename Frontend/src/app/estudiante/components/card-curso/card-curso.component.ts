@@ -16,10 +16,12 @@ export class CardCursoComponent implements OnInit {
   constructor(private router:Router, private rutaparam:ActivatedRoute, private s_estudiante:EstudianteService){
     this.curso={
       _id:0,img:'',titulo:'',cant_modulos:0,duracion:0,tematica:'',descripcion_general:'',modulos:[]};
-    let pivoteidEstudiante:string | null=this.s_estudiante.getLS_loginEstudiante();
-      this.idEstudiante=Number(pivoteidEstudiante);
+    // let pivoteidEstudiante:string | null=this.s_estudiante.getLS_loginEstudiante();
+    //   this.idEstudiante=Number(pivoteidEstudiante);
   }
   ngOnInit(): void {
+    this.idEstudiante=Number(this.s_estudiante.getLS_loginEstudiante());
+    console.log(this.idEstudiante);
   }
   verCurso(){
     this.s_estudiante.isLoginEstudiante().subscribe(datos=>{
@@ -31,7 +33,7 @@ export class CardCursoComponent implements OnInit {
     });
   }
   dirigirVistaCurso(){
-    this.s_estudiante.isCursoEnColeccion(Number(this.idEstudiante), this.curso._id).subscribe(datos=>{
+    this.s_estudiante.iscursoXestudiante(this.idEstudiante, this.curso._id).subscribe(datos=>{
       console.log("card_"+datos.valor+"_____"+this.idEstudiante+"___"+this.curso._id);
       if(datos.valor==false){
         this.router.navigate(['/inicioEstudiante/cursos/preview/'+this.curso.titulo+'/'+this.curso._id]);
