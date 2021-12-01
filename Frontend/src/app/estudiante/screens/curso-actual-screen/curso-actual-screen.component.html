@@ -1,6 +1,6 @@
-<div class="container bg-white all">
+<div class="container color-fondo all">
     <div class="row">
-        <h3 class="text-center my-5">{{cursoActual.titulo}} </h3>
+        <h3 class="text-center my-5 text-white animated animate__backInDown display-3 ">{{cursoActual.titulo}} </h3>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-lg-3">
@@ -27,7 +27,7 @@
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/sxgIKQEZIQI" 
                             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                        <div class="row ">
+                        <div class="row contenido">
                             <h4 class="mt-5 mb-1">{{moduloActual.titulo}} </h4>
                             <small class=mb-3>{{moduloActual.duracion |minutosParseHrMin}} </small>
                             <p>{{moduloActual.descripcion}} </p>
@@ -38,9 +38,10 @@
             <hr>
         </div>
     </div>
+    <hr class="text-white">
     <div class="row">
-        <div class="col-12 my-2 text-center">
-            <button class="rounded my-3 mx-5"
+        <div class="col-12 my-2 text-center my-5">
+            <button class="rounded my-3 mx-5 btn btn-danger px-5 py-3" type="button" 
             (click)="eliminarCurso()">
                 Eliminar Curso
             </button>

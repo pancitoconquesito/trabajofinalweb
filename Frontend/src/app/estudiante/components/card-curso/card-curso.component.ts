@@ -24,6 +24,8 @@ export class CardCursoComponent implements OnInit {
     console.log(this.idEstudiante);
   }
   verCurso(){
+    window.scroll(0,0);
+    
     this.s_estudiante.isLoginEstudiante().subscribe(datos=>{
       // console.log("card "+datos.valor);
       if(datos.valor==true){

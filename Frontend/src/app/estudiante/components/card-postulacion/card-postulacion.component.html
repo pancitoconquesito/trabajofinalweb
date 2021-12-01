@@ -1,0 +1,14 @@
+    <div class="container rounded shadow" (click)="verOferta()" role="button">
+      <div class="card-columns">
+        <div class="card">
+          <!-- <a href="#"> -->
+          <img class="card-img-top" src={{imagenEmpresa}} alt="Card image cap img-card">
+          <div class="card-body">
+            <h5 class="card-title">{{oferta.titulo}} </h5>
+            <p class="card-text">
+              {{oferta.descripcion |slice:0:15}}
+            </p>
+            <!-- <p class="card-text"><small class="text-muted"><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small></p> -->
+        </div>
+          <!-- </a> -->
+        

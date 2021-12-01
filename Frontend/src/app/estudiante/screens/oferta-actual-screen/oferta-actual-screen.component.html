@@ -13,7 +13,7 @@
                         <small>{{dataEmpresaOferta.nombreEmpresa}} | {{oferta.pais}}, {{oferta.ciudad}}</small>
                     </div>
                     <div class="col-12 col-sm-6 text-center">
-                        <button class="rounded py-2 px-4">Postularme</button>
+                        <button (click)="postulacion()" class="rounded py-2 px-4 animated animate__jello btn btn-info">Postularme</button>
                     </div>
                 </div>
                 <div class="row ms-3">
@@ -22,10 +22,10 @@
             </div>
             <hr>
             <!-- ofertas relacionadas??? -->
-            <div class="row">
+            <!-- <div class="row">
                 <h4>Ofertas Relacionadas</h4>
                 <p>TODO</p>
-            </div>
+            </div> -->
         </div>
         <!-- parte secundaria -->
         <div class="col-sn-12 col-lg-4 colorSideB" >

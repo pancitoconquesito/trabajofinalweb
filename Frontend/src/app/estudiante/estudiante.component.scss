@@ -1,3 +1,10 @@
-.fondo-gris{
-    background-color: grey;
-}
+
+  .fondo_all   {
+    background: 
+    linear-gradient(135deg, rgb(38, 49, 87) 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, rgb(38, 49, 87) 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, rgb(38, 49, 87)  25%, transparent 25%),
+    linear-gradient(45deg, rgb(38, 49, 87)  25%, transparent 25%);	
+    background-size: 5em 5em;
+    background-color: #28213b;
+  }

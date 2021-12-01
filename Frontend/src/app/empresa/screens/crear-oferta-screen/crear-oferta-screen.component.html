@@ -128,8 +128,14 @@
         </div>
         <div class="col-md-12 col-lg-8 offset-lg-2 my-5" *ngIf="formularioCompleto">
             <div class="alert alert-success" role="alert">
-                Oferta cerada exitosamente!
-              </div>
+                Oferta creada exitosamente!
+            </div>
+            <div class="text-center">
+
+                <button (click)="nuevaOferta()" type="button" class="btn btn-success">Crear otra oferta</button>
+            </div>
         </div>
     </div>
 </div>
+
+

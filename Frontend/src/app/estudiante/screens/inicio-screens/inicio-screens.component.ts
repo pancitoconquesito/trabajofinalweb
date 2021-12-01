@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/models/curso.model';
 import { Estudiante } from 'src/app/models/estudiante.model';
+import { OfertaLaboral } from 'src/app/models/oferta_laboral.model';
 import { EstudianteService } from 'src/app/services/estudiante/estudiante.service';
+import { OfertaService } from 'src/app/services/oferta/oferta.service';
 
 @Component({
   selector: 'app-inicio-screens',
@@ -14,7 +16,9 @@ export class InicioScreensComponent implements OnInit {
   nombreEstudante:string='';
   listacursosestudiante:Array<Curso>=[];
   sinCursos:boolean=true;
-  constructor( private s_estudiante:EstudianteService) { }
+  listaOfertasPostuladas:Array<OfertaLaboral>=[];
+  sinPostulaciones:boolean=false;
+  constructor( private s_estudiante:EstudianteService, private ofertaServicio:OfertaService) { }
 
   ngOnInit(): void {
     let idEstudiante:number=Number(this.s_estudiante.getLS_loginEstudiante());
@@ -33,6 +37,14 @@ export class InicioScreensComponent implements OnInit {
     });
 
 
+    this.ofertaServicio.getListaOfertasPostulacion(Number(this.s_estudiante.getLS_loginEstudiante())).subscribe(datos=>{
+      // console.log(datos);
+      if(datos.length==0){
+        this.sinPostulaciones=true;
+      }else{
+        this.listaOfertasPostuladas=datos;
+      }
+    });
 
 
   }

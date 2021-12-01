@@ -73,4 +73,9 @@ export class CrearOfertaScreenComponent implements OnInit {
       });
     });
   }
+  nuevaOferta(){
+    this.formulario.reset();
+    this.formularioCompleto=false;
+
+  }
 }

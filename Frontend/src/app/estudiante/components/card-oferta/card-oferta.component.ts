@@ -34,4 +34,8 @@ export class CardOfertaComponent implements OnInit {
   // enter_oferta(nombreEmpresa:string, idNubOfertaEmpresa:number):void{
   //   this.router.navigate(['/inicioEstudiante/:id/ofertas/'+nombreEmpresa+'/'+idNubOfertaEmpresa]);
   // }
+  irAOferta(){
+    window.scroll(0,0);
+    this.router.navigate(['/inicioEstudiante/ofertas/'+this.empresa.nombreEmpresa+'/'+this.numeroNub]);
+  }
 }

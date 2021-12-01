@@ -5,6 +5,8 @@
     -moz-transition: background-color 0.2s linear;
     -ms-transition: background-color 0.2s linear;
     -o-transition: background-color 0.2s linear;
+
+    border-bottom: 10px rgb(12, 0, 41) solid;
 }
 .navbar-nav a:focus{
     background-color: rgb(74, 80, 94) !important;
@@ -23,4 +25,13 @@
 }
 .btn-lineas:hover{
     background-color: rgb(85, 125, 218);
+}
+
+.color-navbar{
+    background: rgb(0,5,75);
+    background: linear-gradient(9deg, rgba(0,5,75,1) 0%, rgba(0,89,143,1) 42%, rgba(163,255,223,1) 100%);
+}
+
+.titulo{
+    color: yellow;
 }

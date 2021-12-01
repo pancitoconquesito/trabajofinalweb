@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row bg-1">
         <!-- imagen -->
-        <div class="col-md-12 col-lg-4  div-img d-flex align-items-center justify-content-center">
+        <div class="col-md-12 col-lg-4  div-img d-flex align-items-center justify-content-center animated animate__fadeInLeft">
             <!-- <img src="https://external-preview.redd.it/wT1hh7m1MFII9_Bn2WydGGI-_BYz55QI7vi_JUatfkI.jpg?auto=webp&s=22da399338ae5db49cf345f4d85bd77174ac37e8"
              alt="dogo test"
              class="img-fluid"> -->
@@ -12,7 +12,7 @@
             <h3 class="text-center my-5">Registrarse</h3>
             <!-- botones opcion -->
             <div *ngIf="opcion==0"> 
-                <button class="btn btn-danger" (click)="volver()">Volver al Login</button>
+                <button class="btn btn-danger animated animate__bounceIn" (click)="volver()">Volver al Login</button>
 
                 <div class="text-center my-5">
                     <button class="btn btn-outline-dark" (click)="changeSeleccion(ESTUDIANTE)">Estudiante</button>
@@ -23,12 +23,12 @@
             </div>
             <!-- reg estudiante -->
             <div *ngIf="opcion==ESTUDIANTE" >
-                <button class="btn btn-danger"  (click)="changeSeleccion(0)">Volver</button>
+                <button class="btn btn-danger animated animate__bounceIn"  (click)="changeSeleccion(0)">Volver</button>
                 <app-reg-estudiante></app-reg-estudiante>
             </div>
             <!-- reg publicador oferta laboral -->
             <div *ngIf="opcion==PUBLICADOR_TRABAJO" >
-                <button (click)="changeSeleccion(0)">Volver</button>
+                <button class="btn btn-danger animated animate__bounceIn"  (click)="changeSeleccion(0)">Volver</button>
                 <app-reg-publicador-oferta-laboral></app-reg-publicador-oferta-laboral>
             </div>
 

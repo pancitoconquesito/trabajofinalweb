@@ -23,6 +23,7 @@ import { CursoDescripcionScreenComponent } from './screens/curso-descripcion-scr
 import { CardModuloDescripcionComponent } from './components/card-modulo-descripcion/card-modulo-descripcion.component';
 import { ConfiguracionComponent } from './screens/configuracion/configuracion.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CardPostulacionComponent } from './components/card-postulacion/card-postulacion.component';
 
 const COMPONENTES=[
     EstudianteComponent,
@@ -46,7 +47,8 @@ const COMPONENTES=[
     CantModulosCursoPipe,
     MinutosParseHrMinPipe,
     FiltroCursosPipe,
-    FiltroOfertaPipe
+    FiltroOfertaPipe,
+    CardPostulacionComponent
     
     
   ],

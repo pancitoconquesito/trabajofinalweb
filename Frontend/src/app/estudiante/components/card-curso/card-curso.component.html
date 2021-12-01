@@ -3,7 +3,7 @@
 (click)="verCurso()"
 role="button">
     <img src={{curso.img}} 
-    alt={{curso.img}} class="bd-placeholder-img card-img-top" 
+    alt={{curso.img}} class="bd-placeholder-img card-img-top animated animate__fadeIn" 
     width="100%" height="190px">
     <div class="cosa text-center ">
         <div>
@@ -11,6 +11,6 @@ role="button">
         </div>
     </div>
     <div class="card-body">
-        <p class="card-text">{{curso.titulo}}</p>
+        <p class="card-text animate rubberBand animated animate__fadeIn">{{curso.titulo}}</p>
         <small>{{curso.cant_modulos |cantModulosCurso}} | {{curso.duracion |minutosParseHrMin}}</small><!--pipe cantidad de modulo(s),  pipe de tiempo-->
 </div>

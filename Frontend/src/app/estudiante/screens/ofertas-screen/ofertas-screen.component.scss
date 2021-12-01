@@ -1,20 +1,28 @@
 .all{
-    background-color: white;
+    background: rgb(243,255,238);
+background: linear-gradient(352deg, rgba(243,255,238,1) 0%, rgba(106,164,125,1) 50%, rgba(80,139,143,1) 100%);
     min-height: 100vh;
     #busqueda-filtro{
         width: 80%;
     }
     .border-lados{
-        background-color: rgb(250, 248, 227);
-        border-left: black solid px;
-        border-right: grey solid 1px;
+        background: rgb(49,111,96);
+        background: linear-gradient(352deg, rgba(49,111,96,1) 0%, rgba(36,99,37,1) 50%, rgba(44,70,18,1) 100%);
+        border-left: black solid 20px;
+        border-right: grey solid 5px;
+        
+        h3,label{
+            color: mintcream;
+        }
     }
+
 }
-
-
 .cardOferta{
     height: 206px;
-    background-color: rgb(206, 206, 206);
+    background: #BDE9E6;
+background: -webkit-linear-gradient(top left, #BDE9E6, #C7AFE1);
+background: -moz-linear-gradient(top left, #BDE9E6, #C7AFE1);
+background: linear-gradient(to bottom right, #BDE9E6, #C7AFE1);
     border: solid black 1px;
     transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
     -webkit-transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);

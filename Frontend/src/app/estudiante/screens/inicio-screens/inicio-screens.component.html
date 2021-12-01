@@ -1,10 +1,10 @@
 
-<div class="container fondo alturaMax">
+<div class="container fondo alturaMax shadow">
     <div class="row ">
-        <h4>Bienvenido {{nombreEstudante}} </h4>
+        <h4 class="m-4">Bienvenido {{nombreEstudante}} </h4>
     </div>
     <div class="row">
-        <h4 class="text-center">Mis Cursos</h4>
+        <h2 class="text-center my-3 display-3 animated animate__fadeInDown">Mis Cursos</h2>
         <div class="col-12 text-center" *ngIf="sinCursos">Sin cursos inscritos actualmente</div>
         <div class="col-12 text-center" *ngIf="!sinCursos">
 
@@ -24,10 +24,34 @@
     </div>
     <div class="row">
         <div class="col-12 my-2 text-center">
-            <button class="rounded my-3 mx-5"
+            <button type="button" class="rounded my-3 mx-5 btn btn-success"
             routerLink="../configuracion">
                 Editar Cuenta
             </button>
         </div>
     </div>
+    <hr>
+    <div class="row">
+        <h2 class="text-center my-3 display-3 animated animate__fadeInDown">Mis Postulaciones</h2>
+
+        <div class="col-12 text-center" *ngIf="sinPostulaciones">Sin Postulaciones a ofertas actualmente</div>
+        <div class="col-12 text-center" *ngIf="!sinPostulaciones">
+
+            <div class="container">
+                <div class="row my-5 justify-content-center"> 
+
+                    <div class="col-12 col-sm-6 col-lg-4 rounded cardOferta my-3" 
+                    
+                    *ngFor="let cardOferta of listaOfertasPostuladas "><!-- for -->
+                        <app-card-postulacion [oferta]=cardOferta></app-card-postulacion>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
 </div>
+

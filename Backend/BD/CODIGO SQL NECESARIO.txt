@@ -1,0 +1,226 @@
+drop  table if exists curso cascade;
+create table curso(
+	_id serial not null,
+	
+	img VARCHAR(500) not null,
+	titulo VARCHAR(100) not null,
+	cant_modulos integer not null,
+	duracion integer not null,
+	tematica varchar(30) not null,
+	descripcion_general VARCHAR(500) not null,
+
+	constraint pk_curso primary key (_id)
+);
+drop  table if exists modulo cascade;
+create table modulo(
+	_id serial not null,
+	
+	img VARCHAR(500) not null,
+	numero_modulo integer not null,
+	titulo VARCHAR(100) not null,
+	descripcion VARCHAR(500) not null,
+	duracion integer not null,
+	urlvideo VARCHAR(200) not null,
+	fk_curso integer not null,
+
+	constraint pk_modulo primary key (_id),
+	constraint fk_curso_ foreign key (fk_curso)
+	references curso(_id)
+	on update cascade
+	on delete cascade
+);
+---------------------
+drop  table if exists estudiante cascade;
+create table estudiante(
+	_id serial not null,
+	nombres varchar(30) not null,
+	apellidos varchar(30) not null,
+	email varchar(30) not null,
+	contrasena varchar(10) not null,
+	pais varchar(50) not null,
+	ciudad varchar(50) not null,
+	telefono bigint not null,
+	cc varchar(30) not null,
+	
+	constraint pk_estudiante primary key (_id),
+	constraint uq_email unique (email)
+);
+
+drop  table if exists nub_estudiante_curso cascade;
+create table nub_estudiante_curso(
+	
+	id_estudiante integer not null,
+	id_curso integer not null,
+	constraint pk_estudiante_curso primary key (id_estudiante, id_curso),
+	
+	constraint fk_estudiante foreign key (id_estudiante)
+	references estudiante(_id),
+	constraint fk_curso foreign key (id_curso)
+	references curso(_id)
+);
+--------------------
+drop  table if exists empresa cascade;
+create table empresa(
+	_id serial not null,
+	
+	nombre_empresa varchar(50) not null,
+	correo varchar(50) not null,
+	contrasena varchar(15) not null,
+	telefono bigint not null,
+	descripcion_empresa varchar(500) not null,
+	img_empresa varchar(500) not null,
+	
+	constraint pk_empresa primary key (_id),
+	constraint uq_correo unique (correo)
+);
+
+drop  table if exists oferta cascade;
+create table oferta(
+	_id serial not null,
+	
+	titulo varchar(50) not null,
+	descripcion varchar(500) not null,
+	pais varchar(50) not null,
+	ciudad varchar(50) not null,
+	fecha_publicacion varchar(50) not null,
+	tipo_jornada varchar(50) not null,
+	correo_contacto_reclutar varchar(30) not null,
+	telefono_contacto_laboral integer not null,
+	fk_empresa integer not null,
+	teletrabajo bool not null,
+	sueldo integer not null,
+	
+	constraint pk_oferta primary key (_id),
+	constraint fk_empresa_ foreign key (fk_empresa)
+	references empresa(_id)
+	on update cascade
+	on delete cascade
+);
+
+----
+
+drop  table if exists sis_listaofertas cascade;
+create table sis_listaofertas(
+	_idNub serial not null,
+    _idOferta integer not null,
+    _idEmpresa integer not null,
+	
+	constraint pk_s_listaofertas primary key (_idNub),
+	constraint fk_oferta_ foreign key (_idOferta)
+	references oferta(_id)
+	on update cascade
+	on delete cascade,
+	constraint fk_empresa_ foreign key (_idEmpresa)
+	references empresa(_id)
+	on update cascade
+	on delete cascade
+);
+
+
+drop  table if exists data_admin cascade;
+create table data_admin(
+	_id serial not null,
+	
+	email VARCHAR(500) not null,
+	clave VARCHAR(100) not null,
+
+	constraint pk_admin primary key (_id),
+	constraint uq_email_admin unique (email)
+);
+
+drop  table if exists postulacion cascade;
+create table postulacion(
+	_id serial not null,
+	_id_estudiante integer not null,
+	_id_oferta integer not null,
+	_id_empresa integer not null,
+	
+	constraint pk_postulacion primary key (_id),
+	constraint fk_postulacion_estudiante foreign key (_id_estudiante)
+	references estudiante(_id) on update cascade on delete cascade,
+	constraint fk_postulacion_oferta foreign key (_id_oferta)
+	references oferta(_id) on update cascade on delete cascade,
+	constraint fk_postulacion_empresa foreign key (_id_empresa)
+	references empresa(_id) on update cascade on delete cascade
+);
+--------------------------------datos iniciales------------------------------------------------
+
+INSERT INTO data_admin (email, clave)
+values('admin@gmail.com', 'admin123');
+
+-- creamos 2 cursos
+INSERT INTO curso (img, titulo, cant_modulos, duracion, tematica, descripcion_general)
+values('https://i.imgur.com/iI8htRg.jpg',
+	   'C++', 3, 150, 'Programación', 'descripcion general de este curso');
+INSERT INTO curso (img, titulo, cant_modulos, duracion, tematica, descripcion_general)
+values('https://besthqwallpapers.com/Uploads/26-1-2018/38416/thumb2-french-mastiff-4k-puppy-pets-dogs.jpg',
+	   'Unity', 3, 200, 'Diseño', 'descripcion general de este curso');
+
+-- creamos unos 6 modulos
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+values('https://images-cdn.9gag.com/photo/a9nXmdD_700b.jpg',
+		1, 'Hola mundo', 'descripcion del hola mundo', 50,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 1);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZT_qPLC3_A1mUsiXplLbRD5g2EHOPIfTTFToeuCJQay0aJr3Uue8UKzRPmc8JHZfuJOQ&usqp=CAU',
+		2, 'Memoria dinamica', 'descripcion de memoria dinamica', 100,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 1);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXl8zqCvmSzvAMJz_JkYNx-ErobI3sOoeG_yfFFOyfyIdQUesQ7wVJhgkMUojK76F0Qk&usqp=CAU',
+		3, 'arboles binarios', 'descripcion de arboles binarios', 100,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 1);
+---
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+values('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpiFXplxk8ydBavi4pAgkgEveB85w69F5DfEKzMWJ3dXykxLPHlXfOjBrsKxEXJ5vvb5I&usqp=CAU',
+		1, 'gameobjet y componentes', 'descripcion de gameobjet y componentes', 50,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 2);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZlXHOqm7CthfSCYm44Bqk-hLkOmbB74isd3UbMmxSRhPLf4RMzPDJhdzw3poN4W4uw4I&usqp=CAU',
+		2, 'memoria, scenes y camarasa', 'descripcion de memoria, scenes y camaras', 100,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 2);
+INSERT INTO modulo (img, numero_modulo, titulo, descripcion, duracion, urlvideo, fk_curso)
+VALUES ('https://i.imgur.com/DRqD0gI.jpg',
+		3, 'scriptable objets y arquitectur', 'descripcion de scriptable objets y arquitectur', 50,
+	   'https://www.youtube.com/embed/sxgIKQEZIQI', 2);
+
+
+-- creamos 1 estudiante
+INSERT INTO estudiante (nombres, apellidos, email, contrasena, pais, ciudad, telefono, cc)
+values('juan pablo','soto perez','juan@gmail.com','123','Chile','Santiago',12345679,'11111111-k');
+
+--le agregamos un curso
+INSERT INTO nub_estudiante_curso (id_estudiante, id_curso)
+values(1,2);
+
+---------------------------------------------------
+INSERT INTO empresa (nombre_empresa, correo, contrasena, telefono, descripcion_empresa, img_empresa)
+values('coca-cola', 'rrhh@cocacola.com', '123', 123456789, 
+	  'descripcion empresa coca-cola', 
+	 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/62/621aa443ed231fe8b6a50a05e3a82b8ffcfe6b0c_full.jpg');
+INSERT INTO empresa (nombre_empresa, correo, contrasena, telefono, descripcion_empresa, img_empresa)
+values('nintendo', 'rrhh@nintendo.com', '123', 123456789, 
+	  'descripcion empresa nintendo', 
+	 'https://i.ytimg.com/vi/9m1rM148Qsw/hqdefault.jpg');
+	 
+	 
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
+values('programador coca-cola para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Santiago','01-01-2000','Tiempo completo', 'contacto.cocacola@gmail.com',123456789, 1, true, 100);
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
+values('analista coca-cola para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Osorno','01-01-2000','Tiempo parcial', 'contacto.cocacola@gmail.com',123456789, 1, false, 500);
+	  
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
+values('analista nintendo para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Santiago','01-01-2000','Por horas', 'contacto.nintendo@gmail.com',123456789, 2, true, 100);
+INSERT INTO oferta (titulo, descripcion, pais, ciudad, fecha_publicacion, tipo_jornada, correo_contacto_reclutar, telefono_contacto_laboral, fk_empresa, teletrabajo, sueldo)
+values('programador nintendo para x cosa','se necesitan.. con 999 años de experiencia... en todas las tecnologias existentes.',
+	  'Chile', 'Osorno','01-01-2000','Tiempo parcial', 'contacto.nintendo@gmail.com',123456789, 2, false, 500);
+--------------------
+
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(1,1);
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(3,2);
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(2,1);
+INSERT INTO sis_listaofertas (_idoferta, _idempresa) values(4,2);
+
+

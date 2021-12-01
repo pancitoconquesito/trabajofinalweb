@@ -19,6 +19,15 @@ export class EmpresaService {
   public getOfertasEmpresa(_id:number):Observable<any>{
     return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getOfertasEmpresa/'+_id); 
   }
+  public getNubEmpresaOferta(_idOferta:number,_idEmpresa:number):Observable<any>{
+    return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getNubEmpresaOferta/'+_idOferta+'/'+_idEmpresa); 
+  }
+  public getImagenEmpresa(_id:number):Observable<any>{
+    return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getImagenEmpresa/'+_id); 
+  }
+  public getEmpresa(_id:number):Observable<any>{
+    return this.httpcliente.get(environment.hostname+":"+environment.puerto+'/getEmpresa/'+_id); 
+  }
   public addEmpresa(nombreEmpresa:string, correo:string, password:string, telefono:number, descripcionEmpresa:string, imgEmpresa:string):Observable<any>{
     let obj:any={
       nombreEmpresa:nombreEmpresa,

@@ -115,3 +115,18 @@ create table sis_listaofertas(
 	on update cascade
 	on delete cascade
 );
+drop  table if exists postulacion cascade;
+create table postulacion(
+	_id serial not null,
+	_id_estudiante integer not null,
+	_id_oferta integer not null,
+	_id_empresa integer not null,
+	
+	constraint pk_postulacion primary key (_id),
+	constraint fk_postulacion_estudiante foreign key (_id_estudiante)
+	references estudiante(_id) on update cascade on delete cascade,
+	constraint fk_postulacion_oferta foreign key (_id_oferta)
+	references oferta(_id) on update cascade on delete cascade,
+	constraint fk_postulacion_empresa foreign key (_id_empresa)
+	references empresa(_id) on update cascade on delete cascade
+);

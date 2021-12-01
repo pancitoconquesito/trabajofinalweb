@@ -1,14 +1,21 @@
 .container{
-    background-color: white;
+    background-color: rgb(119, 180, 165);
     
 }
 #busqueda-filtro{
     width: 80%;
 }
 .border-lados{
-    background-color: rgb(228, 250, 227);
-    border-left: black solid px;
-    border-right: grey solid 1px;
+    background: rgb(49,70,111);
+background: linear-gradient(352deg, rgba(49,70,111,1) 0%, rgba(36,99,80,1) 50%, rgba(18,43,70,1) 100%);
+    border-left: black solid 20px;
+    border-right: grey solid 5px;
+    label{
+        color: aliceblue;
+    }
+    h3{
+        color: aliceblue;
+    }
 }
 .alturaMax{
     min-height: 100vh;

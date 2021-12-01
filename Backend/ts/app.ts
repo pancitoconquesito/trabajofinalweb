@@ -134,8 +134,9 @@ app.get('/getsislistaofertas',(req:any, res:any)=>{
   });
 });
 
+
 app.get('/getlistadvoferta',(req:any, res:any)=>{
-  client.query(`select "_id", "titulo", "descripcion", "pais", "ciudad", "fecha_publicacion" as "fechaPublicacion", "tipo_jornada" as "tipoJornada", "fk_empresa" as "fk_idEmpresa", "correo_contacto_reclutar", "telefono_contacto_laboral", "teletrabajo", "sueldo" from "sis_listaofertas"
+  client.query(`select "_id", "titulo", "descripcion", "pais", "ciudad", "fecha_publicacion" , "tipo_jornada", "fk_empresa" as "fk_idEmpresa", "correo_contacto_reclutar", "telefono_contacto_laboral", "teletrabajo", "sueldo" from "sis_listaofertas"
   join "oferta" on "oferta"."_id" = "sis_listaofertas"."_idoferta"`,(err:any, respuesta:any)=>{
     res.send(respuesta.rows);
   });
@@ -384,7 +385,55 @@ app.put('/actualizarCurso/:idCurso',jsonParser, (req:any, res:any, next:any)=>{
 
 
     
+//--------------------------
+app.get('/isEstudiantePostulacion/:_id_estudiante/:_id_oferta',(req:any, res:any)=>{
+  client.query(`select * from postulacion
+  where "_id_estudiante"=$1 and "_id_oferta"=$2`,[req.params._id_estudiante, req.params._id_oferta],(err:any, respuesta:any)=>{
+    if(respuesta.rows[0]!=undefined){
+      res.send({acceso:true, _id:respuesta.rows[0]._id});
+    }else res.send({acceso:false});
+  });
+});
+app.get('/getImagenEmpresa/:_id',(req:any, res:any)=>{
+  client.query(`select "img_empresa" from "empresa" where "_id"=$1`,[req.params._id],(err:any, respuesta:any)=>{
+    res.send({valor:respuesta.rows[0].img_empresa});
+  });
+});
+app.get('/getEmpresa/:_id',(req:any, res:any)=>{
+  client.query(`select * from "empresa" where "_id"=$1`,[req.params._id],(err:any, respuesta:any)=>{
+    res.send({valor:respuesta.rows[0]});
+  });
+});
+app.get('/getNubEmpresaOferta/:_idOferta/:_idEmpresa',(req:any, res:any)=>{
+  client.query(`select "_idnub" from "sis_listaofertas"
+  where "_idoferta"=$1 and "_idempresa"=$2`,[req.params._idOferta, req.params._idEmpresa],(err:any, respuesta:any)=>{
+    res.send({valor:respuesta.rows[0]._idnub});
+  });
+});
 
+
+
+app.get('/getListaOfertasPostulacion/:_id',(req:any, res:any)=>{
+  client.query(`select "oferta"."_id", "oferta"."titulo",  "oferta"."descripcion",  "oferta"."pais",  "oferta"."ciudad",  "oferta"."fecha_publicacion",  "oferta"."tipo_jornada",  "oferta"."correo_contacto_reclutar",  "oferta"."telefono_contacto_laboral", 
+  "oferta"."fk_empresa" as "fk_idEmpresa",  "oferta"."teletrabajo",  "oferta"."sueldo"
+ from "oferta" 
+  join "postulacion" on "postulacion"."_id_oferta"="oferta"."_id"
+  left join "estudiante" on "estudiante"."_id" = "postulacion"."_id_estudiante"
+  where "estudiante"."_id"=$1
+  `,[req.params._id],(err:any, respuesta:any)=>{
+    res.send(respuesta.rows);
+  });
+});
+
+
+app.post('/addPostulacion',jsonParser,(req:any, res:any)=>{
+  client.query(`insert into "postulacion" (_id_estudiante, _id_oferta, _id_empresa)
+  values ($1, $2, $3)
+  RETURNING *`,
+  [req.body._id_estudiante, req.body._id_oferta, req.body._id_empresa] ,(err:any, respuesta:any)=>{
+    res.send({_id:respuesta.rows[0]._id});
+  });
+});
 
 
 //   let variable_uno=req.body.variable_uno;
