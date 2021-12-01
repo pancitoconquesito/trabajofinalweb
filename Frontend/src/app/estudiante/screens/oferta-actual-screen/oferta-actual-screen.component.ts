@@ -49,9 +49,9 @@ export class OfertaActualScreenComponent implements OnInit {
           _id_empresa:this.oferta.fk_idEmpresa
         }
         this.serviceOferta.addPostulacion(newPostulacion).subscribe(dato=>{
-          
+          alert("Postulación exitosa!")
         });
-      }else alert("Ya te encuentras postulado")
+      }else alert("Ya te encuentras postulado");
     });
     // alert("postulacion exitosa!");
     // this.empresa.addPostulacion(this.es)
